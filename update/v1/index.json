@@ -1,0 +1,31 @@
+{
+  "schema": 1,
+  "generatedAt": "2026-10-16T06:25:44Z",
+  "app": null,
+  "components": [
+    {
+      "id": "agent-model-catalog",
+      "name": {
+        "zh": "Agent 模型目录（联调样例）",
+        "en": "Agent model catalog (smoke test)"
+      },
+      "version": "2026.10.16.1",
+      "app": ">=0.2.0, <0.4.0",
+      "dataSchema": 3,
+      "urls": [
+        "https://github.com/ruoguli/deepcurve/releases/download/model-catalog-2026.10.16.1/agent-model-catalog.json"
+      ],
+      "sha256": "ba9d0e15306106d53273bc104be771435253f4ee20191597b01d786d3fcc66b0",
+      "size": 64442,
+      "date": "2026-10-16",
+      "notes": {
+        "zh": [
+          "联调模型目录热更新，新增两个占位模型 ID；仅供更新流程测试。"
+        ],
+        "en": [
+          "Exercise catalog updates with two placeholder model IDs; test use only."
+        ]
+      }
+    }
+  ]
+}
