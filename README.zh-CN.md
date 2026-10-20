@@ -72,17 +72,18 @@
 
 ## 常见文件格式
 
-下表列出主要格式示例。各格式的读写能力和对应的分析入口不尽相同，应用内的文件选择器会按操作提供相应格式。部分格式目前只能读取坐标，我们正在持续完善。
+下表列出 DeepCurve 可以打开的格式。各格式的读写能力和对应的分析入口不尽相同，应用内的文件选择器会按操作提供相应格式。许多程序文件目前只读取结构（输出文件另含基本的计算信息），我们正在持续完善。AMBER 坐标与轨迹文件的元素和原子信息取自同一目录下的拓扑文件（`.prmtop` / `.parm7`）。
 
-| 数据类型 | 格式示例 |
+| 数据类型 | 格式 |
 | --- | --- |
-| 分子与生物结构 | `.xyz`、`.pdb`、`.mol`、`.mol2` |
-| 晶体与周期结构 | `.cif`、VASP `POSCAR` / `CHGCAR`、ABACUS `STRU`、Quantum ESPRESSO `.in`、CP2K `.inp` / `.restart` |
-| 计算输入 | ORCA `.inp`、Gaussian `.gjf` / `.com`、MOPAC `.mop`、PSI4 `.inp` |
-| 计算输出 | ORCA `.out` / `.hess`、Gaussian `.out` / `.log`、orca_2json `.json` |
-| 波函数 | `.molden` / `.input`、`.fch` / `.fchk`、`.wfn`、`.wfx`、`.mwfn` |
-| 网格与轨道数据 | `.cube` / `.cub` |
-| 其他 | XMVB `.xmi` / `.xmo`、Qbics `.inp` / `.out` |
+| 分子与生物结构 | `.xyz`、`.pdb` / `.ent`（含 `.gz`）、`.pqr`、`.mol` / `.sdf`、`.mol2`、GROMACS `.gro`、mmCIF / BinaryCIF（`.mmcif`、`.bcif`） |
+| 晶体与周期结构 | `.cif` / `.mcif`、VASP `POSCAR`、ABACUS `STRU`、Quantum ESPRESSO `.in`、CP2K `.inp` / `.restart`、CASTEP `.cell`、SIESTA `.fdf` / `.XV`、DFTB+ `.gen` / `.hsd`、CRYSTAL `.d12`、ABINIT `.abi` |
+| 计算输入 | ORCA `.inp`、Gaussian `.gjf` / `.com`、MOPAC `.mop`、PSI4 `.inp`、NWChem `.nw`、Q-Chem `.qcin`、Molpro `.molpro` / `.molp`、Dalton `.dal`、ADF `.run`、Turbomole `control` / `coord` |
+| 计算输出 | `.out` / `.log` / `.abo` 按程序横幅自动识别：ORCA、Gaussian、NWChem、Q-Chem、Molpro、Dalton、ADF、Turbomole、Molcas、xTB、CP2K、Quantum ESPRESSO、VASP（`OUTCAR`）、CASTEP、SIESTA、FHI-aims、DFTB+、CRYSTAL、ABINIT、OpenMX、Qbics；另有 ORCA `.hess`、orca_2json `.json`、GAMESS-US `.gms`、`.nwout`、`.qcout`、`.castep` |
+| 轨迹、构象与声子 | LAMMPS `.data` / `.dump` / `.lammpstrj`、AMBER `.prmtop` / `.parm7` 配合 `.rst7` / `.restrt` / `.inpcrd` / `.mdcrd`、SIESTA `.ANI`、CREST `.energies`、phonopy `.yaml` |
+| 波函数 | `.molden` / `.input`、`.fch` / `.fchk`、`.wfn`、`.wfx`、`.mwfn`、NBO `.31` |
+| 网格数据 | `.cube` / `.cub`、VASP `CHGCAR` / `CHG` / `ELFCAR` / `LOCPOT`、DMol3 `.grd`、OpenDX `.dx`、VTK `.vti` |
+| 其他 | XMVB `.xmi` / `.xmo`、Qbics `.inp` / `.out`、DeepCurve 文档（`.qc`） |
 
 ## 安装
 

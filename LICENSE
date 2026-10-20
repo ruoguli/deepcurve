@@ -1,6 +1,8 @@
 DeepCurve Software License Agreement
 
-Version 2.1, effective 2026-10-19
+Version 2.2, effective 2026-10-20
+
+Copyright (c) 2025-2026 Ruogu Li. All rights reserved.
 
 1. Definitions
 
@@ -16,7 +18,7 @@ Version 2.1, effective 2026-10-19
    4. bundled resources generated or curated by the Author, including construct-library templates, the periodic-structure library, parameter tables, and their provenance records;
    5. the built-in agent, plugin framework, and bundled MCP server components.
 
-1.4 “Third-Party Components” means open-source libraries, fonts, datasets, and parameters owned by others that are included in or used by the Software. They are listed with their licenses under Help → Open Source Licenses.
+1.4 “Third-Party Components” means open-source libraries, fonts, datasets, and parameters owned by others that are included in or used by the Software. They are listed with their licenses under Help → About → Third-Party Components That Make Up DeepCurve.
 
 1.5 “External Programs and Services” means programs and services that the Software can call, connect to, or exchange data with but that are not provided with the Software, including:
 
@@ -52,7 +54,7 @@ Free use is conditioned on reasonable citation. If a public work, such as a pape
 
 Recommended citation: Ruogu Li, DeepCurve, version [version], https://github.com/ruoguli/deepcurve, accessed [date].
 
-Citing the Software does not replace citations of the programs, theoretical methods, basis sets, force-field parameters, and datasets you actually used; their sources are listed under Help → Open Source Licenses and in the notes of the analysis panels.
+Citing the Software does not replace citations of the programs, theoretical methods, basis sets, force-field parameters, and datasets you actually used; their sources are listed under Help → About → Third-Party Components That Make Up DeepCurve and in the notes of the analysis panels.
 
 Citing the Software does not mean that the Author endorses, reviews, or approves your work.
 
@@ -74,7 +76,7 @@ Adjusting run parameters, editing your own input files, writing independent scri
 
 6. Third-Party Components and Bundled Data
 
-Third-Party Components and datasets included in the Software are used under their own licenses, copyright notices, and citation requirements. Where such a license conflicts with this Agreement, it controls only for that component or dataset. Help → Open Source Licenses lists these components, their license types, copyright notices, and data sources.
+Third-Party Components and datasets included in the Software are used under their own licenses, copyright notices, and citation requirements. Where such a license conflicts with this Agreement, it controls only for that component or dataset. Help → About → Third-Party Components That Make Up DeepCurve lists these components, their license types, copyright notices, and data sources.
 
 Additional rights granted by a third-party license do not extend to the rest of the Software. NIST atomic-weight data follows NIST's public-information statement, which permits copying and distribution with requested source credit. Source citations for scientific datasets appear in their corresponding data-source notices.
 
@@ -97,8 +99,7 @@ The Software runs on your device. The Author does not use the Software to collec
 The Software accesses the network only when you use the following:
 
    1. checking for or downloading updates, which accesses release manifests and update packages published on GitHub and jsDelivr; update packages are signature-verified before installation;
-   2. features and services you configure and use, such as the agent, remote computing, and other external services and plugins;
-   3. online resources such as interface fonts.
+   2. features and services you configure and use, such as the agent, remote computing, and other external services and plugins.
 
 API keys you save in the Software are stored in your operating system’s credential manager (keychain), and the interface shows only a masked preview. Settings, job records, agent sessions, and similar data are stored in local directories. Keep your own backups; uninstalling the Software or deleting these directories may cause data loss.
 

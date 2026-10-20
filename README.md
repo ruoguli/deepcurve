@@ -72,17 +72,18 @@ Each analysis has its own input requirements. A file that only contains atomic c
 
 ## Supported file formats
 
-The table lists representative formats. Read/write support and the available analyses differ by format, and the file dialogs in the app offer the formats relevant to each action. For some formats only the coordinates can be read at the moment; support is being extended.
+The table lists the formats DeepCurve can open. Read/write support and the available analyses differ by format, and the file dialogs in the app offer the formats relevant to each action. For many program files only the structure (and, for outputs, basic calculation information) is read at the moment; support is being extended. AMBER coordinate and trajectory files take element and atom information from a topology file (`.prmtop` / `.parm7`) in the same folder.
 
-| Data type | Example formats |
+| Data type | Formats |
 | --- | --- |
-| Molecular and biological structures | `.xyz`, `.pdb`, `.mol`, `.mol2` |
-| Crystal and periodic structures | `.cif`, VASP `POSCAR` / `CHGCAR`, ABACUS `STRU`, Quantum ESPRESSO `.in`, CP2K `.inp` / `.restart` |
-| Calculation inputs | ORCA `.inp`, Gaussian `.gjf` / `.com`, MOPAC `.mop`, PSI4 `.inp` |
-| Calculation outputs | ORCA `.out` / `.hess`, Gaussian `.out` / `.log`, orca_2json `.json` |
-| Wavefunctions | `.molden` / `.input`, `.fch` / `.fchk`, `.wfn`, `.wfx`, `.mwfn` |
-| Volumetric and orbital data | `.cube` / `.cub` |
-| Other | XMVB `.xmi` / `.xmo`, Qbics `.inp` / `.out` |
+| Molecular and biological structures | `.xyz`, `.pdb` / `.ent` (also `.gz`), `.pqr`, `.mol` / `.sdf`, `.mol2`, GROMACS `.gro`, mmCIF / BinaryCIF (`.mmcif`, `.bcif`) |
+| Crystal and periodic structures | `.cif` / `.mcif`, VASP `POSCAR`, ABACUS `STRU`, Quantum ESPRESSO `.in`, CP2K `.inp` / `.restart`, CASTEP `.cell`, SIESTA `.fdf` / `.XV`, DFTB+ `.gen` / `.hsd`, CRYSTAL `.d12`, ABINIT `.abi` |
+| Calculation inputs | ORCA `.inp`, Gaussian `.gjf` / `.com`, MOPAC `.mop`, PSI4 `.inp`, NWChem `.nw`, Q-Chem `.qcin`, Molpro `.molpro` / `.molp`, Dalton `.dal`, ADF `.run`, Turbomole `control` / `coord` |
+| Calculation outputs | `.out` / `.log` / `.abo` files are identified by the program banner: ORCA, Gaussian, NWChem, Q-Chem, Molpro, Dalton, ADF, Turbomole, Molcas, xTB, CP2K, Quantum ESPRESSO, VASP (`OUTCAR`), CASTEP, SIESTA, FHI-aims, DFTB+, CRYSTAL, ABINIT, OpenMX and Qbics. Also ORCA `.hess`, orca_2json `.json`, GAMESS-US `.gms`, `.nwout`, `.qcout`, `.castep` |
+| Trajectories, conformers and phonons | LAMMPS `.data` / `.dump` / `.lammpstrj`, AMBER `.prmtop` / `.parm7` with `.rst7` / `.restrt` / `.inpcrd` / `.mdcrd`, SIESTA `.ANI`, CREST `.energies`, phonopy `.yaml` |
+| Wavefunctions | `.molden` / `.input`, `.fch` / `.fchk`, `.wfn`, `.wfx`, `.mwfn`, NBO `.31` |
+| Volumetric data | `.cube` / `.cub`, VASP `CHGCAR` / `CHG` / `ELFCAR` / `LOCPOT`, DMol3 `.grd`, OpenDX `.dx`, VTK `.vti` |
+| Other | XMVB `.xmi` / `.xmo`, Qbics `.inp` / `.out`, DeepCurve documents (`.qc`) |
 
 ## Installation
 
