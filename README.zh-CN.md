@@ -16,8 +16,19 @@
 | 代码与发布信息 | [github.com/ruoguli/deepcurve](https://github.com/ruoguli/deepcurve) |
 | 作者 | Ruogu Li |
 
+## 下载
+
+最新版本：**v0.2.0**，点击文件名即可直接下载。
+
+| Windows（64 位） | Debian / Ubuntu | 其他 Linux |
+| :---: | :---: | :---: |
+| [**deepcurve_0.2.0_x64-setup.exe**](https://github.com/ruoguli/deepcurve/releases/download/v0.2.0/deepcurve_0.2.0_x64-setup.exe) | [**deepcurve_0.2.0_amd64.deb**](https://github.com/ruoguli/deepcurve/releases/download/v0.2.0/deepcurve_0.2.0_amd64.deb) | [**deepcurve_0.2.0_amd64.AppImage**](https://github.com/ruoguli/deepcurve/releases/download/v0.2.0/deepcurve_0.2.0_amd64.AppImage) |
+
+校验文件：[SHA256SUMS.txt](https://github.com/ruoguli/deepcurve/releases/download/v0.2.0/SHA256SUMS.txt) · 更新说明与历史版本：[版本发布页](https://github.com/ruoguli/deepcurve/releases) · 安装说明：[安装](#安装)
+
 ## 目录
 
+- [下载](#下载)
 - [DeepCurve 的用途](#deepcurve-的用途)
 - [主要功能](#主要功能)
 - [常见文件格式](#常见文件格式)

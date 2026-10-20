@@ -16,8 +16,19 @@ Current version: **0.2.0** (2026-10-16). DeepCurve is built with Tauri (Rust + R
 | Source and releases | [github.com/ruoguli/deepcurve](https://github.com/ruoguli/deepcurve) |
 | Author | Ruogu Li |
 
+## Download
+
+Latest version: **v0.2.0** — click a file to download it directly.
+
+| Windows (64-bit) | Debian / Ubuntu | Other Linux |
+| :---: | :---: | :---: |
+| [**deepcurve_0.2.0_x64-setup.exe**](https://github.com/ruoguli/deepcurve/releases/download/v0.2.0/deepcurve_0.2.0_x64-setup.exe) | [**deepcurve_0.2.0_amd64.deb**](https://github.com/ruoguli/deepcurve/releases/download/v0.2.0/deepcurve_0.2.0_amd64.deb) | [**deepcurve_0.2.0_amd64.AppImage**](https://github.com/ruoguli/deepcurve/releases/download/v0.2.0/deepcurve_0.2.0_amd64.AppImage) |
+
+Checksums: [SHA256SUMS.txt](https://github.com/ruoguli/deepcurve/releases/download/v0.2.0/SHA256SUMS.txt) · Release notes and older versions: [Releases](https://github.com/ruoguli/deepcurve/releases) · Installation details: [Installation](#installation)
+
 ## Contents
 
+- [Download](#download)
 - [What DeepCurve is for](#what-deepcurve-is-for)
 - [Features](#features)
 - [Supported file formats](#supported-file-formats)
