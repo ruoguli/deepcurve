@@ -1,0 +1,170 @@
+DeepCurve Software License Agreement
+
+Version 2.1, effective 2026-10-19
+
+1. Definitions
+
+1.1 “Author” or “Licensor” means Ruogu Li.
+
+1.2 “User” means any individual or organization that downloads, installs, runs, or otherwise uses DeepCurve. “Authorized User” means the User personally, or an employee, student, or contractor authorized by an organizational User who uses the Software solely for that organization.
+
+1.3 “Software” or “DeepCurve” means the desktop application released by the Author under the DeepCurve name (formerly Quantum Curve) and its components, including:
+
+   1. installers, executables, portable builds, and update packages;
+   2. the graphical interface, icons, text, documentation, and help content;
+   3. built-in analysis, visualization, modeling, export, and job-management features;
+   4. bundled resources generated or curated by the Author, including construct-library templates, the periodic-structure library, parameter tables, and their provenance records;
+   5. the built-in agent, plugin framework, and bundled MCP server components.
+
+1.4 “Third-Party Components” means open-source libraries, fonts, datasets, and parameters owned by others that are included in or used by the Software. They are listed with their licenses under Help → Open Source Licenses.
+
+1.5 “External Programs and Services” means programs and services that the Software can call, connect to, or exchange data with but that are not provided with the Software, including:
+
+   1. quantum-chemistry and molecular-simulation programs such as ORCA, Gaussian, CP2K, xTB, and PySCF;
+   2. local or remote computing resources accessed through SSH, Slurm, or similar means;
+   3. large-language-model APIs and other online services configured by the User;
+   4. third-party plugins, scripts, and MCP servers added by the User.
+
+1.6 “Input Data” means structures, files, parameters, prompts, and other information that the User imports, opens, submits, or transmits to the Software. “Output Results” means structures, images, spectra, tables, volumetric data, input files, reports, and other content generated or exported by the User through the Software.
+
+2. Acceptance
+
+By downloading, installing, running, or using the Software, you confirm that you have read and agree to this Agreement. If you use the Software on behalf of an organization, you confirm that you are authorized to accept this Agreement for it.
+
+If you do not agree, do not install or use the Software, and delete any copies you have obtained.
+
+3. License Grant
+
+Subject to your compliance with this Agreement, the Author grants you a worldwide, non-exclusive, non-transferable, non-sublicensable, royalty-free, limited license, terminable under this Agreement, to:
+
+   1. install and run the Software on computers you own or control;
+   2. use the Software for personal learning, teaching, academic research, non-profit projects, and internal R&D, analysis, and business decisions within an organization;
+   3. allow Authorized Users to use the Software for your organization, for whose use you are responsible;
+   4. make a reasonable number of copies for installation, operation, and backup;
+   5. use, publish, and commercially exploit Output Results, except as provided in Section 10;
+   6. deliver analyses, reports, or consulting work to clients based on Output Results, provided that clients do not directly access or operate the Software.
+
+The Software is currently provided free of charge. The Author may set separate terms for certain features or services in future versions; such terms do not apply retroactively to versions you obtained under this Agreement.
+
+4. Citation
+
+Free use is conditioned on reasonable citation. If a public work, such as a paper, thesis, research report, public dataset, patent filing, presentation, or product documentation, substantially relies on computations, analyses, visualizations, or models produced with the Software, cite the Software in the methods, software statement, acknowledgments, or references.
+
+Recommended citation: Ruogu Li, DeepCurve, version [version], https://github.com/ruoguli/deepcurve, accessed [date].
+
+Citing the Software does not replace citations of the programs, theoretical methods, basis sets, force-field parameters, and datasets you actually used; their sources are listed under Help → Open Source Licenses and in the notes of the analysis panels.
+
+Citing the Software does not mean that the Author endorses, reviews, or approves your work.
+
+5. Restrictions
+
+Unless you have the Author’s prior written permission, or applicable law expressly permits the act and does not allow it to be excluded by contract, you may not:
+
+   1. modify, translate, or adapt the Software, or create derivative works based on it;
+   2. sell, rent, lend, or sublicense the Software, or redistribute its installers or program files to third parties through file-sharing services, mirrors, download sites, container or virtual-machine images, or similar means;
+   3. decompile, disassemble, unpack, or otherwise reverse-engineer the Software, or extract its source code;
+   4. crack, bypass, or disable developer-mode restrictions, feature switches, update-signature verification, or other technical measures of the Software;
+   5. make the Software available to third parties through remote desktops, hosted services, online platforms, APIs, or other means, or enable third parties to indirectly use its main functionality;
+   6. extract bundled resources such as the construct library, structure library, or parameter tables in bulk and redistribute them separately; third-party datasets are governed by their own licenses;
+   7. remove, hide, or alter copyright notices, this Agreement, third-party license notices, or data provenance records;
+   8. claim that you developed or own the Software, or use the Author’s name or the DeepCurve name to imply that the Author endorses you, your products, or your results;
+   9. use the Software to infringe the intellectual-property, privacy, or other lawful rights of others, or for any activity prohibited by applicable law.
+
+Adjusting run parameters, editing your own input files, writing independent scripts that process data exported from the Software, or extending functionality through the Software’s settings and plugin interfaces is not a modification of the Software.
+
+6. Third-Party Components and Bundled Data
+
+Third-Party Components and datasets included in the Software are used under their own licenses, copyright notices, and citation requirements. Where such a license conflicts with this Agreement, it controls only for that component or dataset. Help → Open Source Licenses lists these components, their license types, copyright notices, and data sources.
+
+Additional rights granted by a third-party license do not extend to the rest of the Software. NIST atomic-weight data follows NIST's public-information statement, which permits copying and distribution with requested source credit. Source citations for scientific datasets appear in their corresponding data-source notices.
+
+Some analysis methods follow definitions from the published literature and from open-source programs and are implemented independently in the Software. This does not mean that the authors of those programs endorse or participate in the Software.
+
+7. External Programs and Services
+
+The Software does not include, and grants you no right to use, any External Programs and Services. You must obtain valid licenses for computing programs such as ORCA and Gaussian and comply with their license terms, the usage rules of your computing resources, and the terms and fees of online services.
+
+When you use remote computing, job files and structure data are transferred over SSH or the relevant platform to servers you configure. When you use the agent, your input, relevant content from files you select, and necessary context are sent to the large-language-model provider you configure. Your configuration determines whether and where data is sent. Do not submit confidential structures, unpublished research data, or other restricted information without authorization.
+
+Within the permissions you grant, the agent may read and write files, run commands, or submit computing jobs. You should review its requests and are responsible for the results of actions you approve.
+
+The Author does not control External Programs and Services and is not responsible for their availability, security, results, fees, or changes to their terms. Plugins, scripts, and MCP servers that you install or connect are not part of the Software.
+
+8. Local Data and Privacy
+
+The Software runs on your device. The Author does not use the Software to collect your personal information, Input Data, Output Results, or usage statistics.
+
+The Software accesses the network only when you use the following:
+
+   1. checking for or downloading updates, which accesses release manifests and update packages published on GitHub and jsDelivr; update packages are signature-verified before installation;
+   2. features and services you configure and use, such as the agent, remote computing, and other external services and plugins;
+   3. online resources such as interface fonts.
+
+API keys you save in the Software are stored in your operating system’s credential manager (keychain), and the interface shows only a masked preview. Settings, job records, agent sessions, and similar data are stored in local directories. Keep your own backups; uninstalling the Software or deleting these directories may cause data loss.
+
+Your rights in Input Data are not changed by using the Software. You must ensure that you are entitled to process the data you import or submit.
+
+9. Output Results and Scientific Verification
+
+To the extent that Output Results do not contain the Software’s code, interface assets, or protected third-party material, the Author claims no rights in them. Where Output Results directly contain third-party material, that material remains subject to its license.
+
+The Software is a research aid. Quantum-chemistry calculations, wavefunction analyses, spectral simulations, structure models, and agent suggestions may be affected by theoretical methods, basis sets, numerical grids, convergence thresholds, input errors, software defects, and model limitations. Some features are in beta, and their numerical implementations may differ from those of other programs.
+
+Before using results for publication, decisions, or further experiments, verify them independently, for example through convergence tests, comparison with other methods or programs, or comparison with experimental or reliable reference data, and keep records of input files, versions, and parameters.
+
+10. Unsuitable Uses
+
+The Software is not designed for the following, and you may not use it for them without independent verification and review by qualified professionals:
+
+   1. clinical diagnosis, treatment, or conclusions on drug safety;
+   2. the design or synthesis of hazardous chemicals, explosives, controlled substances, or other materials capable of causing serious harm;
+   3. unattended control of laboratory equipment or industrial processes;
+   4. nuclear facilities, aerospace, public safety, or other critical infrastructure.
+
+11. Developer Mode, Updates, and Support
+
+Developer mode, beta features, and experimental features are provided for testing and evaluation only. They may be incomplete or unstable and may change or be removed in later versions.
+
+The Author may add, change, or discontinue any feature, or stop releasing new versions, at any time, and has no obligation to provide technical support, bug fixes, security updates, or compatibility maintenance. Updates may change features, file formats, and calculation results; keep the necessary backups before upgrading.
+
+Feedback and suggestions are welcome at ruoguli96@gmail.com or on the project page. The Author may use any feedback you submit freely and without obligation; do not include confidential information.
+
+12. Reservation of Rights
+
+Except for Third-Party Components, copyright and other intellectual-property rights in the Software belong to the Author. This Agreement grants only a limited license to use the Software, transfers no ownership, and grants no trademark, name, or patent rights. All rights not expressly granted are reserved by the Author.
+
+13. Disclaimer of Warranties
+
+The Software is provided free of charge “as is” and “as available”. To the maximum extent permitted by applicable law, the Author makes no express or implied warranties, including warranties of merchantability, fitness for a particular purpose, accuracy, reliability, non-infringement, error-free operation, or continued availability.
+
+14. Limitation of Liability
+
+To the maximum extent permitted by applicable law, the Author is not liable for any indirect, incidental, special, or consequential loss arising from the use of or inability to use the Software, External Programs and Services, Input Data, or Output Results, including loss of data, loss of computing resources or experimental materials, interruption of research or business, loss of profits, and third-party claims.
+
+To the maximum extent permitted by applicable law, the Author’s total cumulative liability relating to the Software does not exceed the amount you actually paid to obtain it.
+
+These limitations do not apply to liability that cannot be excluded or limited by law, including liability for property damage caused intentionally or by gross negligence and liability for personal injury.
+
+15. Termination
+
+If you breach this Agreement, the license granted under it terminates automatically. For a curable breach, the license remains in effect if you cure the breach within 30 days after receiving notice from the Author.
+
+Upon termination, you must stop using the Software and delete all copies under your control. Works already lawfully published and their citations, Sections 9 through 14, and any provisions that by their nature should survive remain in effect after termination.
+
+16. Versions of This Agreement
+
+The Author may publish new versions of this Agreement, identified by version number and effective date. A new version applies only to Software released under it. If you continue to use Software obtained under an earlier version, that earlier version continues to apply. Review the accompanying agreement before installing or using a new version of the Software.
+
+17. Governing Law and Disputes
+
+This Agreement is governed by the laws of the State of Wyoming and applicable federal laws of the United States, without regard to conflict-of-laws rules. The United Nations Convention on Contracts for the International Sale of Goods does not apply to this Agreement.
+
+The parties will first try to resolve any dispute arising from this Agreement or the Software through friendly negotiation.
+
+Nothing in this Agreement limits rights you have under mandatory law where you are located; the disclaimers and limitations of liability apply only to the extent permitted by applicable law.
+
+18. General
+
+This Agreement is the entire agreement between you and the Author regarding the license to use the Software; a separate written agreement signed by both parties controls where applicable. If any provision is invalid or unenforceable, the remaining provisions remain in effect. The Author’s failure to exercise a right is not a waiver of it. You may not assign your rights under this Agreement without the Author’s written consent.
+
+The English text of this Agreement is the official version. Chinese and other translations are for reference only; in case of inconsistency, the English version controls.
