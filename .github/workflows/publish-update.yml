@@ -1,0 +1,67 @@
+# Release 发布后自动更新并签名 update/v1/index.json，提交到 main，客户端随后即可检查到更新。
+# 需要仓库 Secret UPDATE_SIGNING_KEY（Ed25519 私钥 PEM，公钥须在 update/trust.json 中）。
+name: Publish update manifest
+
+on:
+  release:
+    types: [published]
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: "Release tag, e.g. v0.2.2 or model-catalog-2026.11.01.1"
+        required: true
+
+permissions:
+  contents: write
+
+concurrency:
+  group: update-manifest
+  cancel-in-progress: false
+
+jobs:
+  manifest:
+    runs-on: ubuntu-latest
+    env:
+      TAG: ${{ github.event.release.tag_name || inputs.tag }}
+      GH_TOKEN: ${{ github.token }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Download release
+        run: |
+          mkdir -p "$RUNNER_TEMP/assets"
+          gh release download "$TAG" --repo "$GITHUB_REPOSITORY" --dir "$RUNNER_TEMP/assets"
+          gh release view "$TAG" --repo "$GITHUB_REPOSITORY" --json body,isPrerelease,publishedAt > "$RUNNER_TEMP/release.json"
+
+      - name: Update manifest
+        run: node scripts/publish-update.mjs "$TAG" "$RUNNER_TEMP/assets" "$RUNNER_TEMP/release.json"
+
+      - name: Sign and verify
+        env:
+          UPDATE_SIGNING_KEY: ${{ secrets.UPDATE_SIGNING_KEY }}
+        run: |
+          if [ ! -f update/v1/index.json ]; then echo "No manifest for this tag"; exit 0; fi
+          if git ls-files --error-unmatch update/v1/index.json >/dev/null 2>&1 && git diff --quiet -- update/v1/index.json; then
+            echo "Manifest unchanged"; exit 0
+          fi
+          if [ -z "$UPDATE_SIGNING_KEY" ]; then echo "::error::Secret UPDATE_SIGNING_KEY is not set"; exit 1; fi
+          key="$RUNNER_TEMP/update-signing-key.pem"
+          trap 'rm -f "$key"' EXIT
+          (umask 077; printf '%s\n' "$UPDATE_SIGNING_KEY" > "$key")
+          node scripts/update-manifest.mjs sign --index update/v1/index.json --key "$key"
+          node scripts/update-manifest.mjs verify --index update/v1/index.json --trust update/trust.json
+
+      - name: Commit to main
+        run: |
+          git add update/v1/index.json update/v1/index.json.sig
+          if git diff --cached --quiet; then echo "Nothing to commit"; exit 0; fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git commit -m "chore(update): publish $TAG"
+          git push origin HEAD:main
