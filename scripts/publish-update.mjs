@@ -1,14 +1,9 @@
 #!/usr/bin/env node
-// 把一个 GitHub Release 写进更新清单 update/v1/index.json（签名由 sign 子命令另做）。
-// 由 .github/workflows/publish-update.yml 在 Release 发布后调用，也可本地运行：
+// Add a GitHub release to update/v1/index.json (signing is a separate step).
 //
-//   node scripts/publish-update.mjs <tag> <资产目录> <release.json>
+//   node scripts/publish-update.mjs <tag> <asset-dir> <release.json>
 //
-// release.json 是 `gh release view <tag> --json body,isPrerelease,publishedAt` 的输出。
-//   - tag 为 v<版本>（正式版）：登记 Windows / Linux 安装包为应用更新；
-//   - tag 为 model-catalog-<修订号>：登记 agent-model-catalog.json 为数据组件；
-//   - 其他 tag 或预发布的应用版本：不改动清单。
-// 更新说明取自 Release 正文中的“## 主要更新”和“## Highlights”两个列表，两者都必须有。
+// release.json: output of `gh release view <tag> --json body,isPrerelease,publishedAt`.
 
 import { execFileSync } from 'node:child_process';
 import { existsSync, mkdirSync, readdirSync, readFileSync } from 'node:fs';
@@ -20,7 +15,7 @@ const INDEX = join(ROOT, 'update/v1/index.json');
 const MANIFEST_TOOL = join(ROOT, 'scripts/update-manifest.mjs');
 const DOWNLOAD_ROOT = 'https://github.com/ruoguli/deepcurve/releases/download';
 
-// 安装包文件名 -> 平台与形态。Linux 先列 deb，未标注形态的客户端取第一个。
+// Clients without a preferred kind take the first package of their platform.
 const APP_PACKAGES = [
   { pattern: /_x64-setup\.exe$/, platform: 'windows-x86_64', kind: 'nsis' },
   { pattern: /_amd64\.deb$/, platform: 'linux-x86_64', kind: 'deb' },
@@ -28,10 +23,7 @@ const APP_PACKAGES = [
   { pattern: /_aarch64\.dmg$/, platform: 'darwin-aarch64', kind: 'dmg' },
   { pattern: /_x64\.dmg$/, platform: 'darwin-x86_64', kind: 'dmg' },
 ];
-const NOTE_HEADINGS = {
-  zh: ['主要更新', '更新内容'],
-  en: ['Highlights', "What's new"],
-};
+const NOTE_HEADINGS = { zh: ['主要更新'], en: ['Highlights'] };
 
 function fail(message) {
   console.error(`[publish-update] ${message}`);
@@ -42,13 +34,9 @@ function runManifest(args) {
   execFileSync(process.execPath, [MANIFEST_TOOL, ...args], { stdio: 'inherit' });
 }
 
-/** “## 标题”下的 "- " 列表项，去掉 Markdown 强调符号。 */
 function sectionBullets(body, headings) {
   const lines = body.replace(/\r\n/g, '\n').split('\n');
-  const start = lines.findIndex((line) => {
-    const match = /^#{2,3}\s+(.+?)\s*$/.exec(line);
-    return match && headings.includes(match[1]);
-  });
+  const start = lines.findIndex((line) => headings.includes(/^#{2,3}\s+(.+?)\s*$/.exec(line)?.[1]));
   if (start < 0) return [];
   const bullets = [];
   for (const line of lines.slice(start + 1)) {
@@ -63,14 +51,14 @@ function noteArgs(body) {
   const args = [];
   for (const [language, headings] of Object.entries(NOTE_HEADINGS)) {
     const bullets = sectionBullets(body, headings);
-    if (bullets.length === 0) fail(`Release 正文缺少“## ${headings[0]}”列表，清单要求中英文更新说明都有`);
+    if (bullets.length === 0) fail(`release body has no "## ${headings[0]}" list`);
     for (const bullet of bullets) args.push(`--note-${language}`, bullet);
   }
   return args;
 }
 
 const [tag, assetDir, releaseJson] = process.argv.slice(2);
-if (!tag || !assetDir || !releaseJson) fail('用法: node scripts/publish-update.mjs <tag> <资产目录> <release.json>');
+if (!tag || !assetDir || !releaseJson) fail('usage: publish-update.mjs <tag> <asset-dir> <release.json>');
 const release = JSON.parse(readFileSync(releaseJson, 'utf8'));
 const date = (release.publishedAt ?? new Date().toISOString()).slice(0, 10);
 const assets = readdirSync(assetDir);
@@ -78,11 +66,11 @@ const assets = readdirSync(assetDir);
 const appVersion = /^v(\d+\.\d+\.\d+)$/.exec(tag)?.[1];
 const catalogRevision = /^model-catalog-(\d+(?:\.\d+)*)$/.exec(tag)?.[1];
 if (!appVersion && !catalogRevision) {
-  console.log(`${tag} 不是应用版本或数据组件的 tag，不更新清单`);
+  console.log(`${tag}: not an update tag, skipped`);
   process.exit(0);
 }
 if (appVersion && release.isPrerelease) {
-  console.log(`${tag} 是预发布版本，不推送给用户`);
+  console.log(`${tag}: prerelease, skipped`);
   process.exit(0);
 }
 
@@ -103,12 +91,12 @@ if (appVersion) {
     ]);
     registered += 1;
   }
-  if (registered === 0) fail(`${tag} 中没有找到 deepcurve_${appVersion}_* 安装包`);
+  if (registered === 0) fail(`${tag}: no deepcurve_${appVersion}_* packages`);
 } else {
   const file = 'agent-model-catalog.json';
-  if (!assets.includes(file)) fail(`${tag} 中没有 ${file}`);
+  if (!assets.includes(file)) fail(`${tag}: ${file} not found`);
   const content = JSON.parse(readFileSync(join(assetDir, file), 'utf8'));
-  if (content.revision !== catalogRevision) fail(`tag 修订号 ${catalogRevision} 与文件内 revision ${content.revision} 不一致`);
+  if (content.revision !== catalogRevision) fail(`${tag}: file revision is ${content.revision}`);
   runManifest([
     'component', '--index', INDEX, '--id', 'agent-model-catalog', '--file', join(assetDir, file),
     '--url', `${DOWNLOAD_ROOT}/${tag}/${file}`, '--name-zh', 'Agent 模型目录', '--name-en', 'Agent model catalog',

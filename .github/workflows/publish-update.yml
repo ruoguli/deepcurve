@@ -1,5 +1,3 @@
-# Release 发布后自动更新并签名 update/v1/index.json，提交到 main，客户端随后即可检查到更新。
-# 需要仓库 Secret UPDATE_SIGNING_KEY（Ed25519 私钥 PEM，公钥须在 update/trust.json 中）。
 name: Publish update manifest
 
 on:
