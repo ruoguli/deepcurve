@@ -19,7 +19,11 @@
 
 **DeepCurve** is a desktop application for visualizing and analyzing results from computational chemistry and materials simulations. It brings molecular and crystal structure viewing, quantum chemistry output parsing, wavefunction analysis, structure editing, data export and job workflows together in a single application.
 
-Current version: **0.2.0** (2026-10-16). DeepCurve is built with Tauri (Rust + React) and targets Windows, macOS and Linux. The project is at an early stage; the installers actually attached to the [Releases page](https://github.com/ruoguli/deepcurve/releases) are the authoritative list of supported platforms.
+<!-- release:version -->
+Current version: **0.2.1** (2026-10-24).
+<!-- /release:version -->
+
+DeepCurve is built with Tauri (Rust + React) and targets Windows and Linux. The project is at an early stage; the installers actually attached to the [Releases page](https://github.com/ruoguli/deepcurve/releases) are the authoritative list of supported platforms.
 
 <div align="center">
 
@@ -33,13 +37,15 @@ Current version: **0.2.0** (2026-10-16). DeepCurve is built with Tauri (Rust + R
 
 ## 📥 Download
 
-Latest version: **v0.2.0** — click a file to download it directly.
+<!-- release:download -->
+Latest version: **v0.2.1** — click a file to download it directly.
 
 | 🪟 Windows (64-bit) | 🐧 Debian / Ubuntu | 🐧 Other Linux |
 | :---: | :---: | :---: |
-| [**deepcurve_0.2.0_x64-setup.exe**](https://github.com/ruoguli/deepcurve/releases/download/v0.2.0/deepcurve_0.2.0_x64-setup.exe) | [**deepcurve_0.2.0_amd64.deb**](https://github.com/ruoguli/deepcurve/releases/download/v0.2.0/deepcurve_0.2.0_amd64.deb) | [**deepcurve_0.2.0_amd64.AppImage**](https://github.com/ruoguli/deepcurve/releases/download/v0.2.0/deepcurve_0.2.0_amd64.AppImage) |
+| [**deepcurve_0.2.1_x64-setup.exe**](https://github.com/ruoguli/deepcurve/releases/download/v0.2.1/deepcurve_0.2.1_x64-setup.exe) | [**deepcurve_0.2.1_amd64.deb**](https://github.com/ruoguli/deepcurve/releases/download/v0.2.1/deepcurve_0.2.1_amd64.deb) | [**deepcurve_0.2.1_amd64.AppImage**](https://github.com/ruoguli/deepcurve/releases/download/v0.2.1/deepcurve_0.2.1_amd64.AppImage) |
 
-🔐 Checksums: [SHA256SUMS.txt](https://github.com/ruoguli/deepcurve/releases/download/v0.2.0/SHA256SUMS.txt) · Release notes and older versions: [Releases](https://github.com/ruoguli/deepcurve/releases) · Installation details: [Installation](#-installation)
+🔐 Checksums: [SHA256SUMS.txt](https://github.com/ruoguli/deepcurve/releases/download/v0.2.1/SHA256SUMS.txt) · Release notes and older versions: [Releases](https://github.com/ruoguli/deepcurve/releases) · Installation details: [Installation](#-installation)
+<!-- /release:download -->
 
 ---
 
@@ -74,6 +80,10 @@ Wavefunction analyses run in the background and show their results in dedicated 
 | Surface properties and charges | Electrostatic potential (ESP) on molecular surfaces, local electron affinity energy (LEAE), ESP-fitted charges (CHELPG/RESP) |
 | Excited states | Hole–electron analysis |
 | Electronic structure | DOS / PDOS / COHP, electron density difference (EDD) |
+| Orbital localization and charges | Intrinsic atomic orbital (IAO) charges, intrinsic bond orbitals (IBO) |
+| Magnetic response | Anisotropy of the induced current density (AICD), iso-chemical shielding surfaces (ICSS) |
+| Information theory | Atomic and molecular Shannon entropy, Fisher information, Onicescu energy and Rényi entropy; information gain and other relative quantities; information-density grids |
+| Molecular cavities | Isodensity-based cavity visualization and volumes |
 
 Each analysis has its own input requirements. A file that only contains atomic coordinates is enough for structure viewing, but not for analyses that need a basis set, orbitals or electron density. If something is missing, the panel tells you which file or data is required.
 
@@ -107,7 +117,6 @@ Download the installer for your operating system from [GitHub Releases](https://
 | --- | --- | --- |
 | Windows (64-bit) | `*-setup.exe` | Installs for the current user and does not require administrator rights. The installer appears in English or Simplified Chinese according to the Windows display language. DeepCurve uses Microsoft Edge WebView2, which ships with Windows 11; if it is missing, the installer downloads it from Microsoft, which requires an internet connection (installation stops if the download fails). |
 | Linux | `.deb` / `.AppImage` | Install the `.deb` on Debian/Ubuntu-based systems; on other distributions, make the `.AppImage` executable and run it. |
-| macOS | `.dmg` | Open it and drag DeepCurve into the Applications folder. |
 
 If a platform has no package on the Releases page, no build is available for it in that version yet.
 
@@ -135,15 +144,18 @@ DeepCurve does not replace computational engines such as ORCA, Gaussian or CP2K,
 
 ## 🆕 What's new
 
-Highlights of **v0.2.0**:
+<!-- release:notes -->
+Highlights of **v0.2.1**:
 
-- The application was renamed to DeepCurve, and the Agent gained a thinking mode.
-- A unified interface style and a dark mode.
-- Basic molecule building and faster loading of `.cube` files.
-- Miller-index planes, Brillouin zone visualization and coordination polyhedra.
-- Improved SSH private-key connections.
+- Added a Molecular Cavities visualization module to the Analysis menu.
+- Added an Anisotropy of the Induced Current Density (AICD) module to the Analysis menu.
+- Added an Iso-Chemical Shielding Surfaces (ICSS) module to the Analysis menu.
+- Added the Intrinsic Atomic Orbital (IAO) charge and Intrinsic Bond Orbital (IBO) module to the Analysis menu.
+- Added an Information-Theoretic Quantities module to the Analysis menu, covering atomic and molecular information, relative information and information-density grids.
+- Polished parts of the interface.
 
 See the in-app release notes and the [Releases page](https://github.com/ruoguli/deepcurve/releases) for the full list of changes.
+<!-- /release:notes -->
 
 ## 💬 Feedback and support
 

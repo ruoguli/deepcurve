@@ -19,7 +19,11 @@
 
 **DeepCurve** 是一款面向计算化学与材料模拟的桌面可视化和分析软件。它把分子与晶体结构查看、量化计算结果解析、波函数分析、结构编辑、数据导出及作业工作流集中在同一个应用中。
 
-当前版本：**0.2.0**（2026-10-16）。软件基于 Tauri（Rust + React）构建，面向 Windows、macOS 和 Linux 发布。项目仍处于早期阶段，各平台可用的安装包以[版本发布页](https://github.com/ruoguli/deepcurve/releases)的实际内容为准。
+<!-- release:version -->
+当前版本：**0.2.1**（2026-10-24）。
+<!-- /release:version -->
+
+软件基于 Tauri（Rust + React）构建，面向 Windows 和 Linux 发布。项目仍处于早期阶段，各平台可用的安装包以[版本发布页](https://github.com/ruoguli/deepcurve/releases)的实际内容为准。
 
 <div align="center">
 
@@ -33,13 +37,15 @@
 
 ## 📥 下载
 
-最新版本：**v0.2.0**，点击文件名即可直接下载。
+<!-- release:download -->
+最新版本：**v0.2.1**，点击文件名即可直接下载。
 
 | 🪟 Windows（64 位） | 🐧 Debian / Ubuntu | 🐧 其他 Linux |
 | :---: | :---: | :---: |
-| [**deepcurve_0.2.0_x64-setup.exe**](https://github.com/ruoguli/deepcurve/releases/download/v0.2.0/deepcurve_0.2.0_x64-setup.exe) | [**deepcurve_0.2.0_amd64.deb**](https://github.com/ruoguli/deepcurve/releases/download/v0.2.0/deepcurve_0.2.0_amd64.deb) | [**deepcurve_0.2.0_amd64.AppImage**](https://github.com/ruoguli/deepcurve/releases/download/v0.2.0/deepcurve_0.2.0_amd64.AppImage) |
+| [**deepcurve_0.2.1_x64-setup.exe**](https://github.com/ruoguli/deepcurve/releases/download/v0.2.1/deepcurve_0.2.1_x64-setup.exe) | [**deepcurve_0.2.1_amd64.deb**](https://github.com/ruoguli/deepcurve/releases/download/v0.2.1/deepcurve_0.2.1_amd64.deb) | [**deepcurve_0.2.1_amd64.AppImage**](https://github.com/ruoguli/deepcurve/releases/download/v0.2.1/deepcurve_0.2.1_amd64.AppImage) |
 
-🔐 校验文件：[SHA256SUMS.txt](https://github.com/ruoguli/deepcurve/releases/download/v0.2.0/SHA256SUMS.txt) · 更新说明与历史版本：[版本发布页](https://github.com/ruoguli/deepcurve/releases) · 安装说明：[安装](#-安装)
+🔐 校验文件：[SHA256SUMS.txt](https://github.com/ruoguli/deepcurve/releases/download/v0.2.1/SHA256SUMS.txt) · 更新说明与历史版本：[版本发布页](https://github.com/ruoguli/deepcurve/releases) · 安装说明：[安装](#-安装)
+<!-- /release:download -->
 
 ---
 
@@ -74,6 +80,10 @@
 | 表面性质与电荷 | 分子表面静电势（ESP）、局域电子亲和能（LEAE）、ESP 拟合电荷（CHELPG/RESP） |
 | 激发态 | 空穴-电子分析 |
 | 电子结构 | DOS / PDOS / COHP、电子密度差（EDD） |
+| 轨道定域化与电荷 | 内禀原子轨道（IAO）电荷、内禀成键轨道（IBO） |
+| 磁响应 | 感应电流密度各向异性（AICD）、等化学屏蔽面（ICSS） |
+| 信息论 | Shannon 熵、Fisher 信息、Onicescu 信息能、Rényi 熵等原子与分子信息量，信息增益等相对信息量，信息论密度格点 |
+| 分子空腔 | 基于等密度面的分子空腔可视化与体积 |
 
 不同分析对输入数据的要求不同。只有原子坐标的文件可以用于结构查看，但无法进行需要基组、轨道或电子密度的分析；缺少数据时，面板会提示所需的文件或数据。
 
@@ -107,7 +117,6 @@
 | --- | --- | --- |
 | Windows（64 位） | `*-setup.exe` | 安装到当前用户目录，无需管理员权限；安装向导会根据系统显示语言自动使用中文或英文。DeepCurve 依赖 Microsoft Edge WebView2，Windows 11 已自带；如果系统中没有，安装程序会从微软官方下载，需要联网（下载失败时安装会中止）。 |
 | Linux | `.deb` / `.AppImage` | Debian/Ubuntu 系可安装 `.deb`；其他发行版可以给 `.AppImage` 加上可执行权限后直接运行。 |
-| macOS | `.dmg` | 打开后把 DeepCurve 拖入“应用程序”文件夹。 |
 
 如果某个平台在发布页中没有对应的安装包，说明该版本暂未提供这个平台的构建。
 
@@ -135,15 +144,18 @@ DeepCurve 不替代 ORCA、Gaussian、CP2K 等计算引擎，也不随应用提�
 
 ## 🆕 当前版本更新
 
-**v0.2.0** 的主要更新：
+<!-- release:notes -->
+**v0.2.1** 的主要更新：
 
-- 应用更名为 DeepCurve，并为 Agent 增加思考模式。
-- 统一界面风格并加入深色模式。
-- 增加基础分子构建功能，优化 `.cube` 文件的载入速度。
-- 增加米勒指数切面、布里渊区可视化和配位多面体显示。
-- 改进 SSH 私钥连接。
+- 分析菜单新增了可视化分子空腔模块。
+- 分析菜单新增了 Anisotropy of the Induced Current Density (AICD) 模块。
+- 分析菜单新增了 Iso-Chemical Shielding Surfaces (ICSS) 模块。
+- 分析菜单新增了内禀原子轨道（IAO）电荷与内禀成键轨道（IBO）模块。
+- 分析菜单新增了信息论量模块，包括原子与分子信息量、相对信息量与信息论密度格点。
+- 优化了部分界面。
 
 更多变更以应用内的更新说明和[版本发布页](https://github.com/ruoguli/deepcurve/releases)为准。
+<!-- /release:notes -->
 
 ## 💬 反馈与支持
 
