@@ -20,7 +20,7 @@
 **DeepCurve** is a desktop application for visualizing and analyzing results from computational chemistry and materials simulations. It brings molecular and crystal structure viewing, quantum chemistry output parsing, wavefunction analysis, structure editing, data export and job workflows together in a single application.
 
 <!-- release:version -->
-Current version: **0.2.1** (2026-10-24).
+Current version: **0.2.2** (2026-10-27).
 <!-- /release:version -->
 
 DeepCurve is built with Tauri (Rust + React) and targets Windows and Linux. The project is at an early stage; the installers actually attached to the [Releases page](https://github.com/ruoguli/deepcurve/releases) are the authoritative list of supported platforms.
@@ -38,13 +38,13 @@ DeepCurve is built with Tauri (Rust + React) and targets Windows and Linux. The 
 ## 📥 Download
 
 <!-- release:download -->
-Latest version: **v0.2.1** — click a file to download it directly.
+Latest version: **v0.2.2** — click a file to download it directly.
 
 | 🪟 Windows (64-bit) | 🐧 Debian / Ubuntu | 🐧 Other Linux |
 | :---: | :---: | :---: |
-| [**deepcurve_0.2.1_x64-setup.exe**](https://github.com/ruoguli/deepcurve/releases/download/v0.2.1/deepcurve_0.2.1_x64-setup.exe) | [**deepcurve_0.2.1_amd64.deb**](https://github.com/ruoguli/deepcurve/releases/download/v0.2.1/deepcurve_0.2.1_amd64.deb) | [**deepcurve_0.2.1_amd64.AppImage**](https://github.com/ruoguli/deepcurve/releases/download/v0.2.1/deepcurve_0.2.1_amd64.AppImage) |
+| [**deepcurve_0.2.2_x64-setup.exe**](https://github.com/ruoguli/deepcurve/releases/download/v0.2.2/deepcurve_0.2.2_x64-setup.exe) | [**deepcurve_0.2.2_amd64.deb**](https://github.com/ruoguli/deepcurve/releases/download/v0.2.2/deepcurve_0.2.2_amd64.deb) | [**deepcurve_0.2.2_amd64.AppImage**](https://github.com/ruoguli/deepcurve/releases/download/v0.2.2/deepcurve_0.2.2_amd64.AppImage) |
 
-🔐 Checksums: [SHA256SUMS.txt](https://github.com/ruoguli/deepcurve/releases/download/v0.2.1/SHA256SUMS.txt) · Release notes and older versions: [Releases](https://github.com/ruoguli/deepcurve/releases) · Installation details: [Installation](#-installation)
+🔐 Checksums: [SHA256SUMS.txt](https://github.com/ruoguli/deepcurve/releases/download/v0.2.2/SHA256SUMS.txt) · Release notes and older versions: [Releases](https://github.com/ruoguli/deepcurve/releases) · Installation details: [Installation](#-installation)
 <!-- /release:download -->
 
 ---
@@ -76,10 +76,14 @@ Wavefunction analyses run in the background and show their results in dedicated 
 | --- | --- |
 | Bond orders | Mayer, Mulliken, Wiberg, Laplacian (LBO), fuzzy (FBO), IBSI, delocalization index (DI), multicenter bond order (MCBO), natural fragment bond orbitals (NFBO) |
 | Weak interactions | NCI (RDG), IGM, IGMH interaction analysis, modified IGM (mIGM), IRI |
-| Electron localization | ELF, LOL |
-| Surface properties and charges | Electrostatic potential (ESP) on molecular surfaces, local electron affinity energy (LEAE), ESP-fitted charges (CHELPG/RESP) |
-| Excited states | Hole–electron analysis |
-| Electronic structure | DOS / PDOS / COHP, electron density difference (EDD) |
+| Electron localization | ELF, LOL, density overlap regions indicator (DORI) |
+| Atomic charges | Hirshfeld, ADCH, CM5 / 1.2×CM5, MBIS, VDD, Becke, Mulliken, Löwdin, SCPA, Stout–Politzer, Bickelhaupt; orbital populations |
+| Surface properties and charges | Electrostatic potential (ESP) and local electron affinity energy (LEAE) on molecular surfaces with surface statistics and extrema, ESP-fitted charges (CHELPG/RESP), Hirshfeld surfaces with fingerprint plots |
+| QTAIM | Critical point search and bond critical point properties; atomic basin charges, volumes and localization/delocalization indices |
+| Conceptual DFT | Condensed Fukui functions, global reactivity indices, Fukui function grids |
+| Aromaticity | HOMA / Bird indices with automatic ring detection |
+| Excited states | Hole–electron analysis, natural transition orbitals (NTO), transition density matrix (TDM) heatmaps |
+| Electronic structure | DOS / PDOS / COHP, VASP DOS and band structures, electron density difference (EDD) |
 | Orbital localization and charges | Intrinsic atomic orbital (IAO) charges, intrinsic bond orbitals (IBO) |
 | Magnetic response | Anisotropy of the induced current density (AICD), iso-chemical shielding surfaces (ICSS) |
 | Information theory | Atomic and molecular Shannon entropy, Fisher information, Onicescu energy and Rényi entropy; information gain and other relative quantities; information-density grids |
@@ -96,18 +100,93 @@ Each analysis has its own input requirements. A file that only contains atomic c
 
 ## 📂 Supported file formats
 
-The table lists the formats DeepCurve can open. Read/write support and the available analyses differ by format, and the file dialogs in the app offer the formats relevant to each action. For many program files only the structure (and, for outputs, basic calculation information) is read at the moment; support is being extended. AMBER coordinate and trajectory files take element and atom information from a topology file (`.prmtop` / `.parm7`) in the same folder.
+The table lists the formats DeepCurve can open and what it reads from each; ✅ marks information that is read. Formats without a program name are general formats. Calculation outputs (`.out` / `.log` / `.abo`) are identified by the program banner. File dialogs in the app offer the formats relevant to each action.
 
-| Data type | Formats |
-| --- | --- |
-| Molecular and biological structures | `.xyz`, `.pdb` / `.ent` (also `.gz`), `.pqr`, `.mol` / `.sdf`, `.mol2`, GROMACS `.gro`, mmCIF / BinaryCIF (`.mmcif`, `.bcif`) |
-| Crystal and periodic structures | `.cif` / `.mcif`, VASP `POSCAR`, ABACUS `STRU`, Quantum ESPRESSO `.in`, CP2K `.inp` / `.restart`, CASTEP `.cell`, SIESTA `.fdf` / `.XV`, DFTB+ `.gen` / `.hsd`, CRYSTAL `.d12`, ABINIT `.abi` |
-| Calculation inputs | ORCA `.inp`, Gaussian `.gjf` / `.com`, MOPAC `.mop`, PSI4 `.inp`, NWChem `.nw`, Q-Chem `.qcin`, Molpro `.molpro` / `.molp`, Dalton `.dal`, ADF `.run`, Turbomole `control` / `coord` |
-| Calculation outputs | `.out` / `.log` / `.abo` files are identified by the program banner: ORCA, Gaussian, NWChem, Q-Chem, Molpro, Dalton, ADF, Turbomole, Molcas, xTB, CP2K, Quantum ESPRESSO, VASP (`OUTCAR`), CASTEP, SIESTA, FHI-aims, DFTB+, CRYSTAL, ABINIT, OpenMX and Qbics. Also ORCA `.hess`, orca_2json `.json`, GAMESS-US `.gms`, `.nwout`, `.qcout`, `.castep` |
-| Trajectories, conformers and phonons | LAMMPS `.data` / `.dump` / `.lammpstrj`, AMBER `.prmtop` / `.parm7` with `.rst7` / `.restrt` / `.inpcrd` / `.mdcrd`, SIESTA `.ANI`, CREST `.energies`, phonopy `.yaml` |
-| Wavefunctions | `.molden` / `.input`, `.fch` / `.fchk`, `.wfn`, `.wfx`, `.mwfn`, NBO `.31` |
-| Volumetric data | `.cube` / `.cub`, VASP `CHGCAR` / `CHG` / `ELFCAR` / `LOCPOT`, DMol3 `.grd`, OpenDX `.dx`, VTK `.vti` |
-| Other | XMVB `.xmi` / `.xmo`, Qbics `.inp` / `.out`, DeepCurve documents (`.qc`) |
+| Program | Format | Coordinates | Cell | MOs | Basis / GTF | Frames / trajectory | Optimization curve | Vibrational spectra | Electronic spectra | NMR | Grid | DOS / bands |
+| --- | --- | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
+|  | `.xyz` | ✅ |  |  |  | ✅ |  |  |  |  |  |  |
+|  | `.pdb` / `.ent` (`.gz`) | ✅ |  |  |  |  |  |  |  |  |  |  |
+|  | `.pqr` | ✅ |  |  |  |  |  |  |  |  |  |  |
+|  | `.mol` / `.sdf` | ✅ |  |  |  |  |  |  |  |  |  |  |
+|  | `.mol2` | ✅ |  |  |  |  |  |  |  |  |  |  |
+|  | `.cif` / `.mcif` | ✅ | ✅ |  |  |  |  |  |  |  |  |  |
+|  | mmCIF / BinaryCIF (`.mmcif`, `.bcif`) | ✅ |  |  |  |  |  |  |  |  |  |  |
+|  | `.molden` / `.input` | ✅ |  | ✅ | ✅ |  |  |  |  |  |  |  |
+|  | `.wfn` | ✅ |  | ✅ | ✅ |  |  |  |  |  |  |  |
+|  | `.wfx` | ✅ |  | ✅ | ✅ |  |  |  |  |  |  |  |
+|  | `.cube` / `.cub` | ✅ |  |  |  |  |  |  |  |  | ✅ |  |
+|  | OpenDX `.dx` |  |  |  |  |  |  |  |  |  | ✅ |  |
+|  | VTK `.vti` |  |  |  |  |  |  |  |  |  | ✅ |  |
+| ABACUS | `STRU` | ✅ | ✅ |  |  |  |  |  |  |  |  |  |
+| ABINIT | `.abi` | ✅ | ✅ |  |  |  |  |  |  |  |  |  |
+| ABINIT | `.abo` | ✅ | ✅ |  |  | ✅ | ✅ |  |  |  |  |  |
+| ADF | `.run` | ✅ |  |  |  |  |  |  |  |  |  |  |
+| ADF | `.out` | ✅ |  |  |  | ✅ | ✅ |  |  |  |  |  |
+| AMBER | `.prmtop` / `.parm7` + `.rst7` / `.restrt` / `.inpcrd` | ✅ |  |  |  |  |  |  |  |  |  |  |
+| AMBER | `.prmtop` / `.parm7` + `.mdcrd` | ✅ |  |  |  | ✅ |  |  |  |  |  |  |
+| CASTEP | `.cell` | ✅ | ✅ |  |  |  |  |  |  |  |  |  |
+| CASTEP | `.castep` | ✅ | ✅ |  |  | ✅ | ✅ |  |  |  |  |  |
+| CP2K | `.inp` / `.restart` | ✅ | ✅ |  |  |  |  |  |  |  |  |  |
+| CP2K | `.out` | ✅ | ✅ |  |  | ✅ | ✅ |  |  |  |  |  |
+| CREST | `.energies` | ✅ |  |  |  | ✅ |  |  |  |  |  |  |
+| CRYSTAL | `.d12` | ✅ | ✅ |  |  |  |  |  |  |  |  |  |
+| CRYSTAL | `.out` | ✅ | ✅ |  |  | ✅ | ✅ |  |  |  |  |  |
+| Dalton | `.dal` | ✅ |  |  |  |  |  |  |  |  |  |  |
+| Dalton | `.out` | ✅ |  |  |  | ✅ | ✅ | ✅ |  |  |  |  |
+| DFTB+ | `.gen` / `.hsd` | ✅ | ✅ |  |  |  |  |  |  |  |  |  |
+| DFTB+ | `.out` | ✅ | ✅ |  |  |  |  |  |  |  |  |  |
+| DMol3 | `.grd` |  |  |  |  |  |  |  |  |  | ✅ |  |
+| FHI-aims | `.out` | ✅ |  |  |  | ✅ | ✅ |  |  |  |  |  |
+| GAMESS-US | `.gms` | ✅ |  |  |  |  |  | ✅ | ✅ |  |  |  |
+| Gaussian | `.gjf` / `.com` | ✅ |  |  |  |  |  |  |  |  |  |  |
+| Gaussian | `.log` / `.out` | ✅ |  |  |  | ✅ | ✅ | ✅ | ✅ | ✅ |  |  |
+| Gaussian | `.fch` / `.fchk` | ✅ |  | ✅ | ✅ |  |  |  |  |  |  |  |
+| GROMACS | `.gro` | ✅ | ✅ |  |  |  |  |  |  |  |  |  |
+| LAMMPS | `.data` | ✅ | ✅ |  |  |  |  |  |  |  |  |  |
+| LAMMPS | `.dump` / `.lammpstrj` | ✅ | ✅ |  |  | ✅ |  |  |  |  |  |  |
+| Molcas | `.out` | ✅ |  |  |  |  |  |  |  |  |  |  |
+| Molpro | `.molpro` / `.molp` | ✅ |  |  |  |  |  |  |  |  |  |  |
+| Molpro | `.out` | ✅ |  |  |  | ✅ | ✅ | ✅ |  |  |  |  |
+| Molpro | `.xml` | ✅ |  | ✅ | ✅ |  |  |  |  |  |  |  |
+| MOPAC | `.mop` | ✅ |  |  |  |  |  |  |  |  |  |  |
+| Multiwfn | `.mwfn` | ✅ |  | ✅ | ✅ |  |  |  |  |  |  |  |
+| NBO | `.31` | ✅ |  |  |  |  |  |  |  |  |  |  |
+| NWChem | `.nw` | ✅ |  |  |  |  |  |  |  |  |  |  |
+| NWChem | `.out` / `.nwout` | ✅ |  |  |  | ✅ | ✅ | ✅ | ✅ |  |  |  |
+| OpenMX | `.out` | ✅ | ✅ |  |  | ✅ | ✅ |  |  |  |  |  |
+| ORCA | `.inp` | ✅ |  |  |  |  |  |  |  |  |  |  |
+| ORCA | `.out` | ✅ |  |  |  | ✅ | ✅ | ✅ | ✅ | ✅ |  |  |
+| ORCA | `.hess` | ✅ |  |  |  |  |  | ✅ |  |  |  |  |
+| ORCA | `.gbw` / `.uno` / `.unso` / `.uco` / `.qro` / `.loc` / `.nto` / `.mp2nat` / `.nat` | ✅ |  | ✅ | ✅ |  |  |  |  |  |  |  |
+| ORCA | `.mkl` | ✅ |  | ✅ | ✅ |  |  |  |  |  |  |  |
+| ORCA | orca_2json `.json` | ✅ |  | ✅ | ✅ |  |  |  |  |  |  |  |
+| phonopy | `.yaml` | ✅ | ✅ |  |  |  |  |  |  |  |  |  |
+| PSI4 | `.inp` | ✅ |  |  |  |  |  |  |  |  |  |  |
+| Q-Chem | `.qcin` | ✅ |  |  |  |  |  |  |  |  |  |  |
+| Q-Chem | `.out` / `.qcout` | ✅ |  |  |  | ✅ | ✅ | ✅ | ✅ |  |  |  |
+| Qbics | `.inp` | ✅ |  |  |  |  |  |  |  |  |  |  |
+| Qbics | `.out` | ✅ |  |  |  | ✅ | ✅ |  |  |  |  |  |
+| Quantum ESPRESSO | `.in` | ✅ | ✅ |  |  |  |  |  |  |  |  |  |
+| Quantum ESPRESSO | `.out` | ✅ | ✅ |  |  | ✅ | ✅ |  |  |  |  |  |
+| SIESTA | `.fdf` / `.XV` | ✅ | ✅ |  |  |  |  |  |  |  |  |  |
+| SIESTA | `.out` | ✅ | ✅ |  |  | ✅ | ✅ |  |  |  |  |  |
+| SIESTA | `.ANI` | ✅ |  |  |  | ✅ |  |  |  |  |  |  |
+| Turbomole | `control` / `coord` | ✅ |  |  |  |  |  |  |  |  |  |  |
+| Turbomole | `.out` | ✅ |  |  |  | ✅ | ✅ | ✅ | ✅ |  |  |  |
+| VASP | `POSCAR` / `CONTCAR` | ✅ | ✅ |  |  |  |  |  |  |  |  |  |
+| VASP | `OUTCAR` | ✅ | ✅ |  |  | ✅ | ✅ | ✅ |  |  |  |  |
+| VASP | `vasprun.xml` | ✅ | ✅ |  |  | ✅ | ✅ |  |  |  |  | ✅ |
+| VASP | `XDATCAR` | ✅ | ✅ |  |  | ✅ | ✅ |  |  |  |  |  |
+| VASP | `DOSCAR` / `EIGENVAL` / `PROCAR` |  |  |  |  |  |  |  |  |  |  | ✅ |
+| VASP | `CHGCAR` / `CHG` / `ELFCAR` / `LOCPOT` | ✅ | ✅ |  |  |  |  |  |  |  | ✅ |  |
+| XMVB | `.xmi` / `.xmo` | ✅ |  |  |  |  |  |  |  |  |  |  |
+| xTB | `.out` | ✅ |  |  |  | ✅ | ✅ | ✅ |  |  |  |  |
+
+- Turbomole and xTB vibrational spectra are read from the `vibspectrum` file in the same folder; VASP `OUTCAR` gives frequencies and modes without IR intensities.
+- VASP `DOSCAR` / `EIGENVAL` / `PROCAR` are read from a calculation folder through the VASP DOS and band structure dialog.
+- ORCA binary orbital files and `.mkl` open as a Molden file written beside them. Molecular orbitals of an output file come from a same-name wavefunction file (`.fch`, `.molden`, ...) in the same folder.
+- AMBER coordinate and trajectory files take element and atom information from a topology file (`.prmtop` / `.parm7`) in the same folder.
+- DeepCurve documents (`.qc`) can also be opened.
 
 ## 💿 Installation
 
@@ -119,6 +198,8 @@ Download the installer for your operating system from [GitHub Releases](https://
 | Linux | `.deb` / `.AppImage` | Install the `.deb` on Debian/Ubuntu-based systems; on other distributions, make the `.AppImage` executable and run it. |
 
 If a platform has no package on the Releases page, no build is available for it in that version yet.
+
+Starting with v0.2.2, new versions can be installed from **Check for updates** inside the app. Versions 0.2.0 and 0.2.1 cannot receive this update automatically; download and install v0.2.2 manually once, and later versions will be offered in the app.
 
 ## 🚀 Getting started
 
@@ -145,14 +226,22 @@ DeepCurve does not replace computational engines such as ORCA, Gaussian or CP2K,
 ## 🆕 What's new
 
 <!-- release:notes -->
-Highlights of **v0.2.1**:
+Highlights of **v0.2.2**:
 
-- Added a Molecular Cavities visualization module to the Analysis menu.
-- Added an Anisotropy of the Induced Current Density (AICD) module to the Analysis menu.
-- Added an Iso-Chemical Shielding Surfaces (ICSS) module to the Analysis menu.
-- Added the Intrinsic Atomic Orbital (IAO) charge and Intrinsic Bond Orbital (IBO) module to the Analysis menu.
-- Added an Information-Theoretic Quantities module to the Analysis menu, covering atomic and molecular information, relative information and information-density grids.
-- Polished parts of the interface.
+- Fixed potential issues when reading .molden files and issues involving conversions with .wfx/.wfn files.
+- Added support for directly reading .gbw files generated by ORCA. This does not rely on orca_2mkl, and because .gbw is not a publicly documented format, compatibility may vary across ORCA versions; converting .gbw to .molden with orca_2mkl is still recommended.
+- Added compatibility for reading output files from older ORCA versions and improved the reading of Gaussian output files.
+- Added an Atomic Charges module to the Analysis menu: Hirshfeld, ADCH, CM5 (and 1.2×CM5), MBIS, VDD, Becke, Mulliken, Löwdin, SCPA, Stout–Politzer and Bickelhaupt charges, plus orbital populations.
+- Added a QTAIM Topology module to the Analysis menu that locates critical points and characterizes bonds through bond critical point properties.
+- Added a QTAIM Atomic Basins module to the Analysis menu for basin charges, volumes and localization/delocalization indices.
+- Added a Conceptual DFT module to the Analysis menu for condensed Fukui functions, global reactivity indices and Fukui function grids.
+- Added a Hirshfeld Surface module to the Analysis menu, with contact statistics by element pair and fingerprint plots.
+- Added a Density Overlap Regions Indicator (DORI) module to the Analysis menu.
+- Added a HOMA / Bird aromaticity module to the Aromaticity submenu that finds rings automatically and works with any structure file.
+- Added a Natural Transition Orbitals (NTO) module to the Analysis menu, covering all excited states and open-shell systems.
+- Added a Transition Density Matrix heatmap module to the Analysis menu.
+- ESP and LEAE surface analyses now show surface statistics and surface extrema in the results panel.
+- Added support for plotting VASP density-of-states and energy data, and displaying spin density.
 
 See the in-app release notes and the [Releases page](https://github.com/ruoguli/deepcurve/releases) for the full list of changes.
 <!-- /release:notes -->
