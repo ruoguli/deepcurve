@@ -14,13 +14,12 @@
 </p>
 
 <p align="center">
-  <img src="docs/images/esp-surface.png" alt="Electrostatic potential mapped onto the molecular surface in DeepCurve" width="720">
+  <img src="docs/images/deepcurve-banner.png" alt="DeepCurve — Modern computational chemistry for the AI era" width="720">
 </p>
-
-**DeepCurve** is a desktop application for visualizing and analyzing results from computational chemistry and materials simulations. It brings molecular and crystal structure viewing, quantum chemistry output parsing, wavefunction analysis, structure editing, data export and job workflows together in a single application.
+**DeepCurve** is a desktop application for visualizing and analyzing results from computational chemistry and materials simulations. It brings molecular and crystal structure viewing, quantum chemistry output parsing, wavefunction analysis, structure editing, data export, job workflows, a literature library and an Agent assistant together in a single application.
 
 <!-- release:version -->
-Current version: **0.2.2** (2026-10-27).
+Current version: **0.2.3** (2026-11-08).
 <!-- /release:version -->
 
 DeepCurve is built with Tauri (Rust + React) and targets Windows and Linux. The project is at an early stage; the installers actually attached to the [Releases page](https://github.com/ruoguli/deepcurve/releases) are the authoritative list of supported platforms.
@@ -30,7 +29,7 @@ DeepCurve is built with Tauri (Rust + React) and targets Windows and Linux. The 
 | Resource | Link |
 | --- | --- |
 | 🌐 Community | [chat.deepcurve.org](https://chat.deepcurve.org) |
-| 💻 Source and releases | [github.com/ruoguli/deepcurve](https://github.com/ruoguli/deepcurve) |
+| 💻 Project and releases | [github.com/ruoguli/deepcurve](https://github.com/ruoguli/deepcurve) |
 | 👤 Author | Ruogu Li |
 
 </div>
@@ -38,13 +37,13 @@ DeepCurve is built with Tauri (Rust + React) and targets Windows and Linux. The 
 ## 📥 Download
 
 <!-- release:download -->
-Latest version: **v0.2.2** — click a file to download it directly.
+Latest version: **v0.2.3** — click a file to download it directly.
 
 | 🪟 Windows (64-bit) | 🐧 Debian / Ubuntu | 🐧 Other Linux |
 | :---: | :---: | :---: |
-| [**deepcurve_0.2.2_x64-setup.exe**](https://github.com/ruoguli/deepcurve/releases/download/v0.2.2/deepcurve_0.2.2_x64-setup.exe) | [**deepcurve_0.2.2_amd64.deb**](https://github.com/ruoguli/deepcurve/releases/download/v0.2.2/deepcurve_0.2.2_amd64.deb) | [**deepcurve_0.2.2_amd64.AppImage**](https://github.com/ruoguli/deepcurve/releases/download/v0.2.2/deepcurve_0.2.2_amd64.AppImage) |
+| [**deepcurve_0.2.3_x64-setup.exe**](https://github.com/ruoguli/deepcurve/releases/download/v0.2.3/deepcurve_0.2.3_x64-setup.exe) | [**deepcurve_0.2.3_amd64.deb**](https://github.com/ruoguli/deepcurve/releases/download/v0.2.3/deepcurve_0.2.3_amd64.deb) | [**deepcurve_0.2.3_amd64.AppImage**](https://github.com/ruoguli/deepcurve/releases/download/v0.2.3/deepcurve_0.2.3_amd64.AppImage) |
 
-🔐 Checksums: [SHA256SUMS.txt](https://github.com/ruoguli/deepcurve/releases/download/v0.2.2/SHA256SUMS.txt) · Release notes and older versions: [Releases](https://github.com/ruoguli/deepcurve/releases) · Installation details: [Installation](#-installation)
+🔐 Checksums: [SHA256SUMS.txt](https://github.com/ruoguli/deepcurve/releases/download/v0.2.3/SHA256SUMS.txt) · Release notes and older versions: [Releases](https://github.com/ruoguli/deepcurve/releases) · Installation details: [Installation](#-installation)
 <!-- /release:download -->
 
 ---
@@ -61,6 +60,7 @@ Quantum chemistry packages run the calculations; DeepCurve helps you inspect and
 - Rotate, pan and measure structures; select atoms or connected fragments and edit atomic coordinates.
 - Build molecules with the element picker and fragment library; edit lattice parameters and view periodic images.
 - Display Miller-index planes, Brillouin zones and coordination polyhedra.
+- Translate grid data and view it in supercells with the Crystal grid data tools.
 - Render molecular orbitals, densities and mapped surfaces with adjustable isovalues, colors and materials, and export publication-quality images.
 
 ### 📈 Calculation results
@@ -76,15 +76,17 @@ Wavefunction analyses run in the background and show their results in dedicated 
 | --- | --- |
 | Bond orders | Mayer, Mulliken, Wiberg, Laplacian (LBO), fuzzy (FBO), IBSI, delocalization index (DI), multicenter bond order (MCBO), natural fragment bond orbitals (NFBO) |
 | Weak interactions | NCI (RDG), IGM, IGMH interaction analysis, modified IGM (mIGM), IRI |
-| Electron localization | ELF, LOL, density overlap regions indicator (DORI) |
+| Electron localization | ELF and LOL, including their basin analyses; density overlap regions indicator (DORI) |
 | Atomic charges | Hirshfeld, ADCH, CM5 / 1.2×CM5, MBIS, VDD, Becke, Mulliken, Löwdin, SCPA, Stout–Politzer, Bickelhaupt; orbital populations |
-| Surface properties and charges | Electrostatic potential (ESP) and local electron affinity energy (LEAE) on molecular surfaces with surface statistics and extrema, ESP-fitted charges (CHELPG/RESP), Hirshfeld surfaces with fingerprint plots |
+| Periodic grid charges | Hirshfeld, Hirshfeld-I, MBIS and CM5 charges from periodic electron density grids |
+| Surface properties and charges | Electrostatic potential (ESP) and local electron attachment energy (LEAE) on molecular surfaces with surface statistics and extrema, ESP-fitted charges (CHELPG/RESP), Hirshfeld surfaces with fingerprint plots |
 | QTAIM | Critical point search and bond critical point properties; atomic basin charges, volumes and localization/delocalization indices |
 | Conceptual DFT | Condensed Fukui functions, global reactivity indices, Fukui function grids |
-| Aromaticity | HOMA / Bird indices with automatic ring detection |
+| Local chemical potential | Local Regional Chemical Potential (LRCP) |
+| Aromaticity | HOMA / Bird indices with automatic ring detection; fuzzy-space PDI / FLU / PLR / ITA; magnetically induced currents and bond currents |
 | Excited states | Hole–electron analysis, natural transition orbitals (NTO), transition density matrix (TDM) heatmaps |
 | Electronic structure | DOS / PDOS / COHP, VASP DOS and band structures, electron density difference (EDD) |
-| Orbital localization and charges | Intrinsic atomic orbital (IAO) charges, intrinsic bond orbitals (IBO) |
+| Orbital analysis | Orbital composition, Foster–Boys / Pipek–Mezey localization, intrinsic atomic orbital (IAO) charges, intrinsic bond orbitals (IBO), Adaptive Natural Density Partitioning (AdNDP) |
 | Magnetic response | Anisotropy of the induced current density (AICD), iso-chemical shielding surfaces (ICSS) |
 | Information theory | Atomic and molecular Shannon entropy, Fisher information, Onicescu energy and Rényi entropy; information gain and other relative quantities; information-density grids |
 | Molecular cavities | Isodensity-based cavity visualization and volumes |
@@ -95,8 +97,16 @@ Each analysis has its own input requirements. A file that only contains atomic c
 
 - Create and edit input files for ORCA, CP2K, Quantum ESPRESSO and other programs.
 - Export structures, images, 3D models and volumetric data for reports or for use in other scientific software.
+- Preserve surface coloring when exporting 3D scenes as `.glb` / `.obj` for rendering in tools such as Blender.
 - Submit and manage jobs on local WSL2/Linux, SSH/Linux hosts and Slurm clusters, which require the corresponding environment and accounts.
 - Configure an Agent model service and connect external MCP tools that you explicitly set up, to assist with file handling and workflows.
+
+### 📚 Literature and Agent workflows
+
+- Store and read papers, add annotations and record notes in the sidebar Literature Library; the Agent can also interact with the library.
+- View context usage and manually compress the Agent's context, and use the Agent to interact with more of DeepCurve's interface.
+- Configure Memory and Token Usage Statistics in Settings, switch model providers, and discover available upstream models.
+- Use built-in specifications for selected language models to help the Agent identify their capabilities.
 
 ## 📂 Supported file formats
 
@@ -195,11 +205,24 @@ Download the installer for your operating system from [GitHub Releases](https://
 | OS | Package | Notes |
 | --- | --- | --- |
 | Windows (64-bit) | `*-setup.exe` | Installs for the current user and does not require administrator rights. The installer appears in English or Simplified Chinese according to the Windows display language. DeepCurve uses Microsoft Edge WebView2, which ships with Windows 11; if it is missing, the installer downloads it from Microsoft, which requires an internet connection (installation stops if the download fails). |
-| Linux | `.deb` / `.AppImage` | Install the `.deb` on Debian/Ubuntu-based systems; on other distributions, make the `.AppImage` executable and run it. |
+| Linux (x86_64) | `.deb` / `.AppImage` | Install the `.deb` on Debian/Ubuntu-based systems; on other distributions, make the `.AppImage` executable and run it. |
+
+On Debian / Ubuntu, run this command in the download folder:
+
+```bash
+sudo apt install ./deepcurve_0.2.3_amd64.deb
+```
+
+Then launch DeepCurve from the application menu or with the `deep-curve` command. For the AppImage, run:
+
+```bash
+chmod +x ./deepcurve_0.2.3_amd64.AppImage
+./deepcurve_0.2.3_amd64.AppImage
+```
 
 If a platform has no package on the Releases page, no build is available for it in that version yet.
 
-Starting with v0.2.2, new versions can be installed from **Check for updates** inside the app. Versions 0.2.0 and 0.2.1 cannot receive this update automatically; download and install v0.2.2 manually once, and later versions will be offered in the app.
+Starting with v0.2.2, new versions can be installed from **Check for updates** inside the app. Users of 0.2.0 and 0.2.1 need to download and install the current release manually once; subsequent versions will be offered in the app.
 
 ## 🚀 Getting started
 
@@ -226,22 +249,20 @@ DeepCurve does not replace computational engines such as ORCA, Gaussian or CP2K,
 ## 🆕 What's new
 
 <!-- release:notes -->
-Highlights of **v0.2.2**:
+Highlights of **v0.2.3**:
 
-- Fixed potential issues when reading .molden files and issues involving conversions with .wfx/.wfn files.
-- Added support for directly reading .gbw files generated by ORCA. This does not rely on orca_2mkl, and because .gbw is not a publicly documented format, compatibility may vary across ORCA versions; converting .gbw to .molden with orca_2mkl is still recommended.
-- Added compatibility for reading output files from older ORCA versions and improved the reading of Gaussian output files.
-- Added an Atomic Charges module to the Analysis menu: Hirshfeld, ADCH, CM5 (and 1.2×CM5), MBIS, VDD, Becke, Mulliken, Löwdin, SCPA, Stout–Politzer and Bickelhaupt charges, plus orbital populations.
-- Added a QTAIM Topology module to the Analysis menu that locates critical points and characterizes bonds through bond critical point properties.
-- Added a QTAIM Atomic Basins module to the Analysis menu for basin charges, volumes and localization/delocalization indices.
-- Added a Conceptual DFT module to the Analysis menu for condensed Fukui functions, global reactivity indices and Fukui function grids.
-- Added a Hirshfeld Surface module to the Analysis menu, with contact statistics by element pair and fingerprint plots.
-- Added a Density Overlap Regions Indicator (DORI) module to the Analysis menu.
-- Added a HOMA / Bird aromaticity module to the Aromaticity submenu that finds rings automatically and works with any structure file.
-- Added a Natural Transition Orbitals (NTO) module to the Analysis menu, covering all excited states and open-shell systems.
-- Added a Transition Density Matrix heatmap module to the Analysis menu.
-- ESP and LEAE surface analyses now show surface statistics and surface extrema in the results panel.
-- Added support for plotting VASP density-of-states and energy data, and displaying spin density.
+- Redesigned the Agent interface, added context usage display and manual context compression, improved performance, and expanded the DeepCurve interface features the Agent can access. Tool calls are more reliable, though failures may still be frequent.
+- Updated Settings with Memory and Token Usage Statistics. Simplified API key and model configuration, provider switching, and discovery of available models.
+- Added a Literature Library to the sidebar for storing, reading and annotating papers, taking notes, and working with the Agent. Formula recognition remains limited.
+- Fixed input-file reading issues for ORCA, Quantum ESPRESSO (QE) and other programs.
+- Added the Local Regional Chemical Potential (LRCP) method to the Analysis module.
+- Fixed surface coloring loss when exporting `.glb` / `.obj` scenes for further rendering in tools such as Blender.
+- Added orbital composition analysis.
+- Added built-in specifications for selected language models so the Agent can identify their capabilities.
+- Added Crystal grid data tools for translating grids and viewing them in supercells.
+- Added ELF and LOL basin analyses.
+- Added magnetically induced current and bond current calculations to the Aromaticity module.
+- Added Adaptive Natural Density Partitioning (AdNDP) analysis.
 
 See the in-app release notes and the [Releases page](https://github.com/ruoguli/deepcurve/releases) for the full list of changes.
 <!-- /release:notes -->

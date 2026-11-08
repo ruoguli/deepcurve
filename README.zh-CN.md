@@ -14,13 +14,13 @@
 </p>
 
 <p align="center">
-  <img src="docs/images/esp-surface.png" alt="DeepCurve 中映射到分子表面的静电势" width="720">
+  <img src="docs/images/deepcurve-banner.png" alt="DeepCurve — 面向 AI 时代的现代计算化学" width="720">
 </p>
 
-**DeepCurve** 是一款面向计算化学与材料模拟的桌面可视化和分析软件。它把分子与晶体结构查看、量化计算结果解析、波函数分析、结构编辑、数据导出及作业工作流集中在同一个应用中。
+**DeepCurve** 是一款面向计算化学与材料模拟的桌面可视化和分析软件。它把分子与晶体结构查看、量化计算结果解析、波函数分析、结构编辑、数据导出、作业工作流、文献库及 Agent 助手集中在同一个应用中。
 
 <!-- release:version -->
-当前版本：**0.2.2**（2026-10-27）。
+当前版本：**0.2.3**（2026-11-08）。
 <!-- /release:version -->
 
 软件基于 Tauri（Rust + React）构建，面向 Windows 和 Linux 发布。项目仍处于早期阶段，各平台可用的安装包以[版本发布页](https://github.com/ruoguli/deepcurve/releases)的实际内容为准。
@@ -30,7 +30,7 @@
 | 入口 | 地址 |
 | --- | --- |
 | 🌐 社区网站 | [chat.deepcurve.org](https://chat.deepcurve.org) |
-| 💻 代码与发布信息 | [github.com/ruoguli/deepcurve](https://github.com/ruoguli/deepcurve) |
+| 💻 项目与发布信息 | [github.com/ruoguli/deepcurve](https://github.com/ruoguli/deepcurve) |
 | 👤 作者 | Ruogu Li |
 
 </div>
@@ -38,13 +38,13 @@
 ## 📥 下载
 
 <!-- release:download -->
-最新版本：**v0.2.2**，点击文件名即可直接下载。
+最新版本：**v0.2.3**，点击文件名即可直接下载。
 
 | 🪟 Windows（64 位） | 🐧 Debian / Ubuntu | 🐧 其他 Linux |
 | :---: | :---: | :---: |
-| [**deepcurve_0.2.2_x64-setup.exe**](https://github.com/ruoguli/deepcurve/releases/download/v0.2.2/deepcurve_0.2.2_x64-setup.exe) | [**deepcurve_0.2.2_amd64.deb**](https://github.com/ruoguli/deepcurve/releases/download/v0.2.2/deepcurve_0.2.2_amd64.deb) | [**deepcurve_0.2.2_amd64.AppImage**](https://github.com/ruoguli/deepcurve/releases/download/v0.2.2/deepcurve_0.2.2_amd64.AppImage) |
+| [**deepcurve_0.2.3_x64-setup.exe**](https://github.com/ruoguli/deepcurve/releases/download/v0.2.3/deepcurve_0.2.3_x64-setup.exe) | [**deepcurve_0.2.3_amd64.deb**](https://github.com/ruoguli/deepcurve/releases/download/v0.2.3/deepcurve_0.2.3_amd64.deb) | [**deepcurve_0.2.3_amd64.AppImage**](https://github.com/ruoguli/deepcurve/releases/download/v0.2.3/deepcurve_0.2.3_amd64.AppImage) |
 
-🔐 校验文件：[SHA256SUMS.txt](https://github.com/ruoguli/deepcurve/releases/download/v0.2.2/SHA256SUMS.txt) · 更新说明与历史版本：[版本发布页](https://github.com/ruoguli/deepcurve/releases) · 安装说明：[安装](#-安装)
+🔐 校验文件：[SHA256SUMS.txt](https://github.com/ruoguli/deepcurve/releases/download/v0.2.3/SHA256SUMS.txt) · 更新说明与历史版本：[版本发布页](https://github.com/ruoguli/deepcurve/releases) · 安装说明：[安装](#-安装)
 <!-- /release:download -->
 
 ---
@@ -61,6 +61,7 @@
 - 旋转、平移和测量结构；选择原子或连通片段，并编辑原子坐标。
 - 使用元素选择器和构件库搭建分子，编辑晶胞参数并查看晶体周期结构。
 - 显示米勒指数切面、布里渊区和配位多面体等晶体信息。
+- 使用晶体模块中的格点数据工具平移格点数据，或查看超胞中的格点数据。
 - 渲染分子轨道、密度和映射曲面，可调节等值面、颜色和材质，并导出适合发表的图像。
 
 ### 📈 计算结果
@@ -76,15 +77,17 @@
 | --- | --- |
 | 键级 | Mayer、Mulliken、Wiberg、拉普拉斯键级（LBO）、模糊键级（FBO）、IBSI、离域化指数（DI）、多中心键级（MCBO）、自然片段键轨道（NFBO） |
 | 弱相互作用 | NCI（RDG）、IGM、IGMH 相互作用分析、修正独立梯度模型（mIGM）、IRI |
-| 电子定域化 | ELF、LOL、密度重叠区域指示函数（DORI） |
+| 电子定域化 | ELF、LOL 及其盆分析；密度重叠区域指示函数（DORI） |
 | 原子电荷 | Hirshfeld、ADCH、CM5 / 1.2×CM5、MBIS、VDD、Becke、Mulliken、Löwdin、SCPA、Stout–Politzer、Bickelhaupt；轨道布居 |
+| 周期格点电荷 | 从周期电子密度格点计算 Hirshfeld、Hirshfeld-I、MBIS、CM5 电荷 |
 | 表面性质与电荷 | 分子表面静电势（ESP）与局部电子附着能（LEAE）及表面统计、表面极值点，ESP 拟合电荷（CHELPG/RESP），Hirshfeld 表面与指纹图 |
 | QTAIM | 临界点搜索与键临界点性质；原子盆电荷、体积与局域化/离域化指数 |
 | 概念密度泛函 | 凝聚 Fukui 函数、全局反应性指数、Fukui 函数格点 |
-| 芳香性 | HOMA / Bird 指数，自动识别环 |
+| 局域化学势 | Local Regional Chemical Potential（LRCP） |
+| 芳香性 | HOMA / Bird 指数，自动识别环；模糊空间 PDI / FLU / PLR / ITA；磁感生电流与键电流 |
 | 激发态 | 空穴-电子分析、自然跃迁轨道（NTO）、跃迁密度矩阵（TDM）热图 |
 | 电子结构 | DOS / PDOS / COHP、VASP 态密度与能带、电子密度差（EDD） |
-| 轨道定域化与电荷 | 内禀原子轨道（IAO）电荷、内禀成键轨道（IBO） |
+| 轨道分析 | 轨道组成、Foster–Boys / Pipek–Mezey 轨道定域化、内禀原子轨道（IAO）电荷、内禀成键轨道（IBO）、自适应自然密度划分（AdNDP） |
 | 磁响应 | 感应电流密度各向异性（AICD）、等化学屏蔽面（ICSS） |
 | 信息论 | Shannon 熵、Fisher 信息、Onicescu 信息能、Rényi 熵等原子与分子信息量，信息增益等相对信息量，信息论密度格点 |
 | 分子空腔 | 基于等密度面的分子空腔可视化与体积 |
@@ -95,8 +98,16 @@
 
 - 创建或修改 ORCA、CP2K、Quantum ESPRESSO 等程序的计算输入文件。
 - 导出结构、图像、三维模型和网格数据，用于报告或交给其他科学软件处理。
+- 导出 `.glb` / `.obj` 三维场景时保留曲面着色信息，方便在 Blender 等软件中继续渲染。
 - 在本机 WSL2/Linux、SSH/Linux 主机和 Slurm 集群上提交与管理作业，需要相应的运行环境与账号。
 - 配置 Agent 模型服务，并连接用户显式配置的外部 MCP 工具，辅助文件处理和工作流操作。
+
+### 📚 文献与 Agent 工作流
+
+- 在侧边栏的文献库中存放和阅读论文、添加批注并记录想法，也可以让 Agent 与文献库交互。
+- 查看上下文使用量、主动压缩 Agent 上下文，并让 Agent 与更多 DeepCurve 界面功能交互。
+- 在设置中配置记忆、查看 Token 使用统计，切换模型供应商并探测上游可用模型。
+- 通过部分大语言模型的内置基础信息，帮助 Agent 识别模型规格。
 
 ## 📂 常见文件格式
 
@@ -195,11 +206,24 @@
 | 系统 | 安装包 | 说明 |
 | --- | --- | --- |
 | Windows（64 位） | `*-setup.exe` | 安装到当前用户目录，无需管理员权限；安装向导会根据系统显示语言自动使用中文或英文。DeepCurve 依赖 Microsoft Edge WebView2，Windows 11 已自带；如果系统中没有，安装程序会从微软官方下载，需要联网（下载失败时安装会中止）。 |
-| Linux | `.deb` / `.AppImage` | Debian/Ubuntu 系可安装 `.deb`；其他发行版可以给 `.AppImage` 加上可执行权限后直接运行。 |
+| Linux（x86_64） | `.deb` / `.AppImage` | Debian/Ubuntu 系可安装 `.deb`；其他发行版可以给 `.AppImage` 加上可执行权限后直接运行。 |
+
+Debian / Ubuntu 用户可在下载目录运行：
+
+```bash
+sudo apt install ./deepcurve_0.2.3_amd64.deb
+```
+
+安装后可从应用菜单或通过 `deep-curve` 命令启动。使用 AppImage 时运行：
+
+```bash
+chmod +x ./deepcurve_0.2.3_amd64.AppImage
+./deepcurve_0.2.3_amd64.AppImage
+```
 
 如果某个平台在发布页中没有对应的安装包，说明该版本暂未提供这个平台的构建。
 
-从 v0.2.2 起，新版本可以通过应用内的**检查更新**安装。0.2.0 与 0.2.1 无法自动收到这次更新，请手动下载安装一次 v0.2.2，之后的版本会在应用内提示。
+从 v0.2.2 起，新版本可以通过应用内的**检查更新**安装。0.2.0 与 0.2.1 用户需要手动下载安装一次当前版本，后续版本会在应用内提示。
 
 ## 🚀 快速上手
 
@@ -226,22 +250,20 @@ DeepCurve 不替代 ORCA、Gaussian、CP2K 等计算引擎，也不随应用提�
 ## 🆕 当前版本更新
 
 <!-- release:notes -->
-**v0.2.2** 的主要更新：
+**v0.2.3** 的主要更新：
 
-- 修复了读取 .molden 文件存在的潜在问题以及与 .wfx/.wfn 文件转换之间的问题。
-- 支持直接读取 ORCA 生成的 .gbw 文件。该功能不依赖 orca_2mkl；由于 .gbw 不是公开格式，随 ORCA 版本变化可能存在兼容性问题，仍建议使用 orca_2mkl 将 .gbw 转换为 .molden 文件。
-- 兼容了旧版本 ORCA 输出文件的读取，优化了 Gaussian 输出文件的读取。
-- 分析菜单新增了原子电荷模块，支持 Hirshfeld、ADCH、CM5（及 1.2×CM5）、MBIS、VDD、Becke、Mulliken、Löwdin、SCPA、Stout–Politzer 与 Bickelhaupt 电荷，以及轨道布居分析。
-- 分析菜单新增了 QTAIM 拓扑分析模块，可搜索临界点并通过键临界点性质判断成键类型。
-- 分析菜单新增了 QTAIM 原子盆模块，可计算原子盆电荷、体积以及局域化/离域化指数（LI/DI）。
-- 分析菜单新增了概念密度泛函（CDFT）模块，可计算凝聚 Fukui 函数、全局反应性指数以及 Fukui 函数格点。
-- 分析菜单新增了 Hirshfeld 表面模块，提供按元素对统计的接触面积与指纹图。
-- 分析菜单新增了密度重叠区域指示函数（DORI）模块。
-- 芳香性子菜单新增了 HOMA / Bird 芳香性模块，可自动识别环，并支持任意结构文件。
-- 分析菜单新增了自然跃迁轨道（NTO）模块，可一次计算全部激发态并支持开壳层体系。
-- 分析菜单新增了跃迁密度矩阵热图模块。
-- 静电势（ESP）与局部电子附着能（LEAE）表面分析新增了表面统计与表面极值点结果面板。
-- 支持绘制 VASP 得到的态密度与能量信息，并支持显示自旋密度信息。
+- 重新设计 Agent 界面，新增上下文用量显示和主动压缩，改进运行性能，并支持与更多 DeepCurve 界面功能交互。工具调用可靠性有所改善，但仍可能频繁失败。
+- 优化设置界面，新增“记忆”和“Token 使用统计”，简化 API Key、模型配置、供应商切换与可用模型探测流程。
+- 侧边栏新增“文献库”，支持存放、阅读和批注论文、记录笔记，并与 Agent 交互；公式识别能力仍有限。
+- 修复 ORCA、Quantum ESPRESSO（QE）等程序的输入文件读取问题。
+- 分析模块新增 Local Regional Chemical Potential（LRCP）方法。
+- 修复导出 `.glb` / `.obj` 三维场景时丢失曲面着色的问题，方便在 Blender 等软件中继续渲染。
+- 新增轨道组成分析。
+- 新增部分大语言模型的内置规格信息，帮助 Agent 识别模型能力。
+- 晶体模块新增格点数据工具，支持平移格点数据和查看超胞中的格点数据。
+- 新增 ELF 与 LOL 盆分析。
+- 芳香性模块新增磁感生电流与键电流计算。
+- 新增自适应自然密度划分（AdNDP）分析。
 
 更多变更以应用内的更新说明和[版本发布页](https://github.com/ruoguli/deepcurve/releases)为准。
 <!-- /release:notes -->
