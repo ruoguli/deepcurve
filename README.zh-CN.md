@@ -17,13 +17,13 @@
   <img src="docs/images/deepcurve-banner.png" alt="DeepCurve — 面向 AI 时代的现代计算化学" width="720">
 </p>
 
-**DeepCurve** 是一款面向计算化学与材料模拟的桌面可视化和分析软件。它把分子与晶体结构查看、量化计算结果解析、波函数分析、结构编辑、数据导出、作业工作流、文献库及 Agent 助手集中在同一个应用中。
+**DeepCurve** 是面向 AI 时代的计算化学桌面中间件，连接研究者、AI Agent、计算软件与科研数据，将结构可视化、计算分析、输入准备和研究工作流整合在一个工作空间中。
 
 <!-- release:version -->
-当前版本：**0.2.3**（2026-11-08）。
+当前版本：**0.2.4**（2026-11-14）。
 <!-- /release:version -->
 
-软件基于 Tauri（Rust + React）构建，面向 Windows 和 Linux 发布。项目仍处于早期阶段，各平台可用的安装包以[版本发布页](https://github.com/ruoguli/deepcurve/releases)的实际内容为准。
+目前仅提供 Windows 和 Linux 版本。项目也具备支持 macOS 的能力，但作者目前没有 macOS 设备进行测试，因此暂未发布 macOS 版本。如需 macOS 版本，可邮件联系作者获取并帮助反馈潜在问题。
 
 <div align="center">
 
@@ -38,20 +38,34 @@
 ## 📥 下载
 
 <!-- release:download -->
-最新版本：**v0.2.3**，点击文件名即可直接下载。
+最新版本：**v0.2.4**，点击文件名即可直接下载。
 
 | 🪟 Windows（64 位） | 🐧 Debian / Ubuntu | 🐧 其他 Linux |
 | :---: | :---: | :---: |
-| [**deepcurve_0.2.3_x64-setup.exe**](https://github.com/ruoguli/deepcurve/releases/download/v0.2.3/deepcurve_0.2.3_x64-setup.exe) | [**deepcurve_0.2.3_amd64.deb**](https://github.com/ruoguli/deepcurve/releases/download/v0.2.3/deepcurve_0.2.3_amd64.deb) | [**deepcurve_0.2.3_amd64.AppImage**](https://github.com/ruoguli/deepcurve/releases/download/v0.2.3/deepcurve_0.2.3_amd64.AppImage) |
+| [**deepcurve_0.2.4_x64-setup.exe**](https://github.com/ruoguli/deepcurve/releases/download/v0.2.4/deepcurve_0.2.4_x64-setup.exe) | [**deepcurve_0.2.4_amd64.deb**](https://github.com/ruoguli/deepcurve/releases/download/v0.2.4/deepcurve_0.2.4_amd64.deb) | [**deepcurve_0.2.4_amd64.AppImage**](https://github.com/ruoguli/deepcurve/releases/download/v0.2.4/deepcurve_0.2.4_amd64.AppImage) |
 
-🔐 校验文件：[SHA256SUMS.txt](https://github.com/ruoguli/deepcurve/releases/download/v0.2.3/SHA256SUMS.txt) · 更新说明与历史版本：[版本发布页](https://github.com/ruoguli/deepcurve/releases) · 安装说明：[安装](#-安装)
+🔐 校验文件：[SHA256SUMS.txt](https://github.com/ruoguli/deepcurve/releases/download/v0.2.4/SHA256SUMS.txt) · 更新说明与历史版本：[版本发布页](https://github.com/ruoguli/deepcurve/releases)
 <!-- /release:download -->
 
 ---
 
 ## 🔬 DeepCurve 的用途
 
-量化计算软件负责执行计算，DeepCurve 负责查看和分析计算产生的数据。打开结构、输出文件、波函数或网格数据后，可以在三维视图中检查结构和轨道，并在相应的分析面板中查看电子结构、化学键、弱相互作用或光谱结果。它也提供输入文件编辑、结构构建和作业管理功能，让准备、运行和查看计算可以在同一个地方完成。
+计算交给求解器，洞察交给 DeepCurve。支持一键载入结构、输出文件、波函数及网格数据，在 3D 视图中直观呈现实体结构与轨道，并通过多维分析面板深度解析电子结构、化学键、弱相互作用与光谱结果。更融合结构构建、输入编辑与作业管理，实现从“准备、运行”到“分析”的一站式科研闭环。
+
+## 🖼️ 界面截图
+
+<p align="center">
+  <img src="docs/images/screenshots/agent-structure-retrieval.png" alt="Agent 获取并载入结构" width="48%">
+  <img src="docs/images/screenshots/molecule-builder.png" alt="分子构建器" width="48%">
+</p>
+<p align="center"><sub>Agent 获取并载入结构</sub> · <sub>分子构建器</sub></p>
+
+<p align="center">
+  <img src="docs/images/screenshots/biomolecular-view.png" alt="生物大分子结构视图" width="48%">
+  <img src="docs/images/screenshots/molecular-orbitals.png" alt="分子轨道视图" width="48%">
+</p>
+<p align="center"><sub>生物大分子结构视图</sub> · <sub>分子轨道视图</sub></p>
 
 ## ✨ 主要功能
 
@@ -71,28 +85,7 @@
 
 ### 🌀 波函数分析
 
-波函数分析在后台运行，结果显示在专门的分析面板和三维视图中。
-
-| 类别 | 分析方法 |
-| --- | --- |
-| 键级 | Mayer、Mulliken、Wiberg、拉普拉斯键级（LBO）、模糊键级（FBO）、IBSI、离域化指数（DI）、多中心键级（MCBO）、自然片段键轨道（NFBO） |
-| 弱相互作用 | NCI（RDG）、IGM、IGMH 相互作用分析、修正独立梯度模型（mIGM）、IRI |
-| 电子定域化 | ELF、LOL 及其盆分析；密度重叠区域指示函数（DORI） |
-| 原子电荷 | Hirshfeld、ADCH、CM5 / 1.2×CM5、MBIS、VDD、Becke、Mulliken、Löwdin、SCPA、Stout–Politzer、Bickelhaupt；轨道布居 |
-| 周期格点电荷 | 从周期电子密度格点计算 Hirshfeld、Hirshfeld-I、MBIS、CM5 电荷 |
-| 表面性质与电荷 | 分子表面静电势（ESP）与局部电子附着能（LEAE）及表面统计、表面极值点，ESP 拟合电荷（CHELPG/RESP），Hirshfeld 表面与指纹图 |
-| QTAIM | 临界点搜索与键临界点性质；原子盆电荷、体积与局域化/离域化指数 |
-| 概念密度泛函 | 凝聚 Fukui 函数、全局反应性指数、Fukui 函数格点 |
-| 局域化学势 | Local Regional Chemical Potential（LRCP） |
-| 芳香性 | HOMA / Bird 指数，自动识别环；模糊空间 PDI / FLU / PLR / ITA；磁感生电流与键电流 |
-| 激发态 | 空穴-电子分析、自然跃迁轨道（NTO）、跃迁密度矩阵（TDM）热图 |
-| 电子结构 | DOS / PDOS / COHP、VASP 态密度与能带、电子密度差（EDD） |
-| 轨道分析 | 轨道组成、Foster–Boys / Pipek–Mezey 轨道定域化、内禀原子轨道（IAO）电荷、内禀成键轨道（IBO）、自适应自然密度划分（AdNDP） |
-| 磁响应 | 感应电流密度各向异性（AICD）、等化学屏蔽面（ICSS） |
-| 信息论 | Shannon 熵、Fisher 信息、Onicescu 信息能、Rényi 熵等原子与分子信息量，信息增益等相对信息量，信息论密度格点 |
-| 分子空腔 | 基于等密度面的分子空腔可视化与体积 |
-
-不同分析对输入数据的要求不同。只有原子坐标的文件可以用于结构查看，但无法进行需要基组、轨道或电子密度的分析；缺少数据时，面板会提示所需的文件或数据。
+波函数分析在后台运行，结果显示在专门的分析面板和三维视图中。方法涵盖化学键、弱相互作用、电荷、电子定域化、激发态、芳香性、磁响应和电子结构等方向。不同方法对输入数据的要求不同；缺少数据时，面板会提示所需内容。
 
 ### 🛠️ 结构编辑、导出与计算工作流
 
@@ -111,93 +104,7 @@
 
 ## 📂 常见文件格式
 
-下表列出 DeepCurve 可以打开的格式及能从中读取的信息，✅ 表示支持。未写软件名的是通用格式。计算输出（`.out` / `.log` / `.abo`）按程序横幅自动识别。应用内的文件选择器会按操作提供相应格式。
-
-| 软件 | 文件格式 | 坐标 | 晶胞 | 分子轨道 | 基函数 / GTF | 多帧 / 轨迹 | 优化曲线 | 振动光谱 | 电子光谱 | NMR | 格点 | DOS / 能带 |
-| --- | --- | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
-|  | `.xyz` | ✅ |  |  |  | ✅ |  |  |  |  |  |  |
-|  | `.pdb` / `.ent`（含 `.gz`） | ✅ |  |  |  |  |  |  |  |  |  |  |
-|  | `.pqr` | ✅ |  |  |  |  |  |  |  |  |  |  |
-|  | `.mol` / `.sdf` | ✅ |  |  |  |  |  |  |  |  |  |  |
-|  | `.mol2` | ✅ |  |  |  |  |  |  |  |  |  |  |
-|  | `.cif` / `.mcif` | ✅ | ✅ |  |  |  |  |  |  |  |  |  |
-|  | mmCIF / BinaryCIF（`.mmcif`、`.bcif`） | ✅ |  |  |  |  |  |  |  |  |  |  |
-|  | `.molden` / `.input` | ✅ |  | ✅ | ✅ |  |  |  |  |  |  |  |
-|  | `.wfn` | ✅ |  | ✅ | ✅ |  |  |  |  |  |  |  |
-|  | `.wfx` | ✅ |  | ✅ | ✅ |  |  |  |  |  |  |  |
-|  | `.cube` / `.cub` | ✅ |  |  |  |  |  |  |  |  | ✅ |  |
-|  | OpenDX `.dx` |  |  |  |  |  |  |  |  |  | ✅ |  |
-|  | VTK `.vti` |  |  |  |  |  |  |  |  |  | ✅ |  |
-| ABACUS | `STRU` | ✅ | ✅ |  |  |  |  |  |  |  |  |  |
-| ABINIT | `.abi` | ✅ | ✅ |  |  |  |  |  |  |  |  |  |
-| ABINIT | `.abo` | ✅ | ✅ |  |  | ✅ | ✅ |  |  |  |  |  |
-| ADF | `.run` | ✅ |  |  |  |  |  |  |  |  |  |  |
-| ADF | `.out` | ✅ |  |  |  | ✅ | ✅ |  |  |  |  |  |
-| AMBER | `.prmtop` / `.parm7` + `.rst7` / `.restrt` / `.inpcrd` | ✅ |  |  |  |  |  |  |  |  |  |  |
-| AMBER | `.prmtop` / `.parm7` + `.mdcrd` | ✅ |  |  |  | ✅ |  |  |  |  |  |  |
-| CASTEP | `.cell` | ✅ | ✅ |  |  |  |  |  |  |  |  |  |
-| CASTEP | `.castep` | ✅ | ✅ |  |  | ✅ | ✅ |  |  |  |  |  |
-| CP2K | `.inp` / `.restart` | ✅ | ✅ |  |  |  |  |  |  |  |  |  |
-| CP2K | `.out` | ✅ | ✅ |  |  | ✅ | ✅ |  |  |  |  |  |
-| CREST | `.energies` | ✅ |  |  |  | ✅ |  |  |  |  |  |  |
-| CRYSTAL | `.d12` | ✅ | ✅ |  |  |  |  |  |  |  |  |  |
-| CRYSTAL | `.out` | ✅ | ✅ |  |  | ✅ | ✅ |  |  |  |  |  |
-| Dalton | `.dal` | ✅ |  |  |  |  |  |  |  |  |  |  |
-| Dalton | `.out` | ✅ |  |  |  | ✅ | ✅ | ✅ |  |  |  |  |
-| DFTB+ | `.gen` / `.hsd` | ✅ | ✅ |  |  |  |  |  |  |  |  |  |
-| DFTB+ | `.out` | ✅ | ✅ |  |  |  |  |  |  |  |  |  |
-| DMol3 | `.grd` |  |  |  |  |  |  |  |  |  | ✅ |  |
-| FHI-aims | `.out` | ✅ |  |  |  | ✅ | ✅ |  |  |  |  |  |
-| GAMESS-US | `.gms` | ✅ |  |  |  |  |  | ✅ | ✅ |  |  |  |
-| Gaussian | `.gjf` / `.com` | ✅ |  |  |  |  |  |  |  |  |  |  |
-| Gaussian | `.log` / `.out` | ✅ |  |  |  | ✅ | ✅ | ✅ | ✅ | ✅ |  |  |
-| Gaussian | `.fch` / `.fchk` | ✅ |  | ✅ | ✅ |  |  |  |  |  |  |  |
-| GROMACS | `.gro` | ✅ | ✅ |  |  |  |  |  |  |  |  |  |
-| LAMMPS | `.data` | ✅ | ✅ |  |  |  |  |  |  |  |  |  |
-| LAMMPS | `.dump` / `.lammpstrj` | ✅ | ✅ |  |  | ✅ |  |  |  |  |  |  |
-| Molcas | `.out` | ✅ |  |  |  |  |  |  |  |  |  |  |
-| Molpro | `.molpro` / `.molp` | ✅ |  |  |  |  |  |  |  |  |  |  |
-| Molpro | `.out` | ✅ |  |  |  | ✅ | ✅ | ✅ |  |  |  |  |
-| Molpro | `.xml` | ✅ |  | ✅ | ✅ |  |  |  |  |  |  |  |
-| MOPAC | `.mop` | ✅ |  |  |  |  |  |  |  |  |  |  |
-| Multiwfn | `.mwfn` | ✅ |  | ✅ | ✅ |  |  |  |  |  |  |  |
-| NBO | `.31` | ✅ |  |  |  |  |  |  |  |  |  |  |
-| NWChem | `.nw` | ✅ |  |  |  |  |  |  |  |  |  |  |
-| NWChem | `.out` / `.nwout` | ✅ |  |  |  | ✅ | ✅ | ✅ | ✅ |  |  |  |
-| OpenMX | `.out` | ✅ | ✅ |  |  | ✅ | ✅ |  |  |  |  |  |
-| ORCA | `.inp` | ✅ |  |  |  |  |  |  |  |  |  |  |
-| ORCA | `.out` | ✅ |  |  |  | ✅ | ✅ | ✅ | ✅ | ✅ |  |  |
-| ORCA | `.hess` | ✅ |  |  |  |  |  | ✅ |  |  |  |  |
-| ORCA | `.gbw` / `.uno` / `.unso` / `.uco` / `.qro` / `.loc` / `.nto` / `.mp2nat` / `.nat` | ✅ |  | ✅ | ✅ |  |  |  |  |  |  |  |
-| ORCA | `.mkl` | ✅ |  | ✅ | ✅ |  |  |  |  |  |  |  |
-| ORCA | orca_2json `.json` | ✅ |  | ✅ | ✅ |  |  |  |  |  |  |  |
-| phonopy | `.yaml` | ✅ | ✅ |  |  |  |  |  |  |  |  |  |
-| PSI4 | `.inp` | ✅ |  |  |  |  |  |  |  |  |  |  |
-| Q-Chem | `.qcin` | ✅ |  |  |  |  |  |  |  |  |  |  |
-| Q-Chem | `.out` / `.qcout` | ✅ |  |  |  | ✅ | ✅ | ✅ | ✅ |  |  |  |
-| Qbics | `.inp` | ✅ |  |  |  |  |  |  |  |  |  |  |
-| Qbics | `.out` | ✅ |  |  |  | ✅ | ✅ |  |  |  |  |  |
-| Quantum ESPRESSO | `.in` | ✅ | ✅ |  |  |  |  |  |  |  |  |  |
-| Quantum ESPRESSO | `.out` | ✅ | ✅ |  |  | ✅ | ✅ |  |  |  |  |  |
-| SIESTA | `.fdf` / `.XV` | ✅ | ✅ |  |  |  |  |  |  |  |  |  |
-| SIESTA | `.out` | ✅ | ✅ |  |  | ✅ | ✅ |  |  |  |  |  |
-| SIESTA | `.ANI` | ✅ |  |  |  | ✅ |  |  |  |  |  |  |
-| Turbomole | `control` / `coord` | ✅ |  |  |  |  |  |  |  |  |  |  |
-| Turbomole | `.out` | ✅ |  |  |  | ✅ | ✅ | ✅ | ✅ |  |  |  |
-| VASP | `POSCAR` / `CONTCAR` | ✅ | ✅ |  |  |  |  |  |  |  |  |  |
-| VASP | `OUTCAR` | ✅ | ✅ |  |  | ✅ | ✅ | ✅ |  |  |  |  |
-| VASP | `vasprun.xml` | ✅ | ✅ |  |  | ✅ | ✅ |  |  |  |  | ✅ |
-| VASP | `XDATCAR` | ✅ | ✅ |  |  | ✅ | ✅ |  |  |  |  |  |
-| VASP | `DOSCAR` / `EIGENVAL` / `PROCAR` |  |  |  |  |  |  |  |  |  |  | ✅ |
-| VASP | `CHGCAR` / `CHG` / `ELFCAR` / `LOCPOT` | ✅ | ✅ |  |  |  |  |  |  |  | ✅ |  |
-| XMVB | `.xmi` / `.xmo` | ✅ |  |  |  |  |  |  |  |  |  |  |
-| xTB | `.out` | ✅ |  |  |  | ✅ | ✅ | ✅ |  |  |  |  |
-
-- Turbomole 与 xTB 的振动光谱读自同目录的 `vibspectrum` 文件；VASP `OUTCAR` 提供频率与振动模式，不含 IR 强度。
-- VASP `DOSCAR` / `EIGENVAL` / `PROCAR` 通过"VASP 态密度与能带"对话框从计算目录读取。
-- ORCA 二进制轨道文件与 `.mkl` 打开时会在旁边写出 Molden 文件再载入；输出文件的分子轨道取自同目录同名的波函数文件（`.fch`、`.molden` 等）。
-- AMBER 坐标与轨迹文件的元素和原子信息取自同一目录下的拓扑文件（`.prmtop` / `.parm7`）。
-- DeepCurve 文档（`.qc`）也可以直接打开。
+DeepCurve 可读取多种计算化学与材料模拟软件的分子和晶体结构、计算输入与输出、轨迹、分子轨道及三维格点数据，支持 ORCA、Gaussian、CP2K、Quantum ESPRESSO、ABACUS、VASP 等程序，也支持 XYZ、PDB、CIF、CUBE 等常见格式。实际可读取的数据取决于文件类型和所选工作流程；部分分析需要同一计算目录中的辅助文件。文件选择器会显示当前操作支持的格式。
 
 ## 💿 安装
 
@@ -211,14 +118,14 @@
 Debian / Ubuntu 用户可在下载目录运行：
 
 ```bash
-sudo apt install ./deepcurve_0.2.3_amd64.deb
+sudo apt install ./deepcurve_0.2.4_amd64.deb
 ```
 
 安装后可从应用菜单或通过 `deep-curve` 命令启动。使用 AppImage 时运行：
 
 ```bash
-chmod +x ./deepcurve_0.2.3_amd64.AppImage
-./deepcurve_0.2.3_amd64.AppImage
+chmod +x ./deepcurve_0.2.4_amd64.AppImage
+./deepcurve_0.2.4_amd64.AppImage
 ```
 
 如果某个平台在发布页中没有对应的安装包，说明该版本暂未提供这个平台的构建。
@@ -250,20 +157,17 @@ DeepCurve 不替代 ORCA、Gaussian、CP2K 等计算引擎，也不随应用提�
 ## 🆕 当前版本更新
 
 <!-- release:notes -->
-**v0.2.3** 的主要更新：
+**v0.2.4** 的主要更新：
 
-- 重新设计 Agent 界面，新增上下文用量显示和主动压缩，改进运行性能，并支持与更多 DeepCurve 界面功能交互。工具调用可靠性有所改善，但仍可能频繁失败。
-- 优化设置界面，新增“记忆”和“Token 使用统计”，简化 API Key、模型配置、供应商切换与可用模型探测流程。
-- 侧边栏新增“文献库”，支持存放、阅读和批注论文、记录笔记，并与 Agent 交互；公式识别能力仍有限。
-- 修复 ORCA、Quantum ESPRESSO（QE）等程序的输入文件读取问题。
-- 分析模块新增 Local Regional Chemical Potential（LRCP）方法。
-- 修复导出 `.glb` / `.obj` 三维场景时丢失曲面着色的问题，方便在 Blender 等软件中继续渲染。
-- 新增轨道组成分析。
-- 新增部分大语言模型的内置规格信息，帮助 Agent 识别模型能力。
-- 晶体模块新增格点数据工具，支持平移格点数据和查看超胞中的格点数据。
-- 新增 ELF 与 LOL 盆分析。
-- 芳香性模块新增磁感生电流与键电流计算。
-- 新增自适应自然密度划分（AdNDP）分析。
+- 修复 `.cif` 文件读取问题，开放生物模式，方便查看 DNA、蛋白质等生物结构。
+- “键与角度”右侧面板的键类型选择框新增氢键选项。
+- 优化 Agent 运行时与前端交互体验。
+- 创建模块新增 VASP 输入文件生成，支持 POSCAR、INCAR、KPOINTS，并可从用户提供的赝势库组装 POTCAR。
+- 扩展电子密度差（EDD）计算，支持 VASP 密度格点，以及 CP2K、Quantum ESPRESSO（QE）、ABACUS 导出的电子密度 CUBE。波函数与周期格点两种流程均支持多个参考及各参考独立的运算符，直接输出 CUBE，并可自动载入三维视图。
+- 优化部分二维绘图界面，支持通过右键菜单导出数据、图片和调整设置，并简化图表布局。
+- “关于 → 灵感来源”新增参考实现软件的快速引用。
+- 补齐部分方法参考来源，Agent 可按需获取“查看方法出处”中的来源信息。
+- 新增“自动移动跨周期表面”，在显示时将跨周期的较小表面碎片拼接到较大片段旁，减少晶胞边界附近的表面截断。
 
 更多变更以应用内的更新说明和[版本发布页](https://github.com/ruoguli/deepcurve/releases)为准。
 <!-- /release:notes -->
@@ -277,7 +181,7 @@ DeepCurve 不替代 ORCA、Gaussian、CP2K 等计算引擎，也不随应用提�
 
 ## ⚠️ 使用边界
 
-计算分析结果应结合原始计算设置和科学文献进行检查。DeepCurve 不能保证所有输入文件或分析结果都适用于每一种研究情形，重要结果请用相应的专业程序或独立方法复核。第三方组件及其许可信息可在应用内查看。将本软件用于研究或发表时，请合理引用本软件及所用分析方法的原始文献。
+计算分析结果应结合原始计算设置和科学文献进行检查。DeepCurve 不能保证所有输入文件或分析结果都适用于每一种研究情形，重要结果请用相应的专业程序或独立方法复核。第三方组件及其许可信息可在应用内查看。将本软件用于研究或发表时，请合理引用本软件。作者也建议引用 [Multiwfn](http://sobereva.com/multiwfn/)、[PySCF](https://pyscf.org/) 和 [Mol*](https://molstar.org/) 等项目；DeepCurve 的实现很大程度上借鉴了这些优秀项目的实践。
 
 ## 📄 许可
 

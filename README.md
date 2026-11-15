@@ -16,13 +16,13 @@
 <p align="center">
   <img src="docs/images/deepcurve-banner.png" alt="DeepCurve — Modern computational chemistry for the AI era" width="720">
 </p>
-**DeepCurve** is a desktop application for visualizing and analyzing results from computational chemistry and materials simulations. It brings molecular and crystal structure viewing, quantum chemistry output parsing, wavefunction analysis, structure editing, data export, job workflows, a literature library and an Agent assistant together in a single application.
+**DeepCurve** is a desktop application and computational chemistry middleware for the AI era. It connects researchers, AI Agents, scientific software and research data, bringing structure visualization, calculation analysis, input preparation and research workflows into one workspace.
 
 <!-- release:version -->
-Current version: **0.2.3** (2026-11-08).
+Current version: **0.2.4** (2026-11-14).
 <!-- /release:version -->
 
-DeepCurve is built with Tauri (Rust + React) and targets Windows and Linux. The project is at an early stage; the installers actually attached to the [Releases page](https://github.com/ruoguli/deepcurve/releases) are the authoritative list of supported platforms.
+Builds are currently available only for Windows and Linux. The project can also support macOS, but the author does not currently have a Mac for testing, so no macOS build has been released. Email the author to obtain a macOS build and help report any potential issues.
 
 <div align="center">
 
@@ -37,20 +37,34 @@ DeepCurve is built with Tauri (Rust + React) and targets Windows and Linux. The 
 ## 📥 Download
 
 <!-- release:download -->
-Latest version: **v0.2.3** — click a file to download it directly.
+Latest version: **v0.2.4** — click a file to download it directly.
 
 | 🪟 Windows (64-bit) | 🐧 Debian / Ubuntu | 🐧 Other Linux |
 | :---: | :---: | :---: |
-| [**deepcurve_0.2.3_x64-setup.exe**](https://github.com/ruoguli/deepcurve/releases/download/v0.2.3/deepcurve_0.2.3_x64-setup.exe) | [**deepcurve_0.2.3_amd64.deb**](https://github.com/ruoguli/deepcurve/releases/download/v0.2.3/deepcurve_0.2.3_amd64.deb) | [**deepcurve_0.2.3_amd64.AppImage**](https://github.com/ruoguli/deepcurve/releases/download/v0.2.3/deepcurve_0.2.3_amd64.AppImage) |
+| [**deepcurve_0.2.4_x64-setup.exe**](https://github.com/ruoguli/deepcurve/releases/download/v0.2.4/deepcurve_0.2.4_x64-setup.exe) | [**deepcurve_0.2.4_amd64.deb**](https://github.com/ruoguli/deepcurve/releases/download/v0.2.4/deepcurve_0.2.4_amd64.deb) | [**deepcurve_0.2.4_amd64.AppImage**](https://github.com/ruoguli/deepcurve/releases/download/v0.2.4/deepcurve_0.2.4_amd64.AppImage) |
 
-🔐 Checksums: [SHA256SUMS.txt](https://github.com/ruoguli/deepcurve/releases/download/v0.2.3/SHA256SUMS.txt) · Release notes and older versions: [Releases](https://github.com/ruoguli/deepcurve/releases) · Installation details: [Installation](#-installation)
+🔐 Checksums: [SHA256SUMS.txt](https://github.com/ruoguli/deepcurve/releases/download/v0.2.4/SHA256SUMS.txt) · Release notes and older versions: [Releases](https://github.com/ruoguli/deepcurve/releases)
 <!-- /release:download -->
 
 ---
 
 ## 🔬 What DeepCurve is for
 
-Quantum chemistry packages run the calculations; DeepCurve helps you inspect and analyze the data they produce. Open a structure, an output file, a wavefunction or volumetric data to examine geometries and orbitals in 3D, then use the analysis panels to study electronic structure, chemical bonding, weak interactions or spectra. DeepCurve also provides input file editing, structure building and job management, so that preparing, running and reviewing a calculation can happen in one place.
+Calculations are handled by the solver; insights come from DeepCurve. Load structures, output files, wavefunctions and grid data in one click, view structures and orbitals in 3D, and use analysis panels to explore electronic structure, bonding, weak interactions and spectra. With structure building, input editing and job management, DeepCurve brings the workflow from preparation and execution through analysis into one research workspace.
+
+## 🖼️ Screenshots
+
+<p align="center">
+  <img src="docs/images/screenshots/agent-structure-retrieval.png" alt="Agent-assisted structure retrieval" width="48%">
+  <img src="docs/images/screenshots/molecule-builder.png" alt="Molecule builder" width="48%">
+</p>
+<p align="center"><sub>Agent-assisted structure retrieval</sub> · <sub>Molecule builder</sub></p>
+
+<p align="center">
+  <img src="docs/images/screenshots/biomolecular-view.png" alt="Biomolecular structure view" width="48%">
+  <img src="docs/images/screenshots/molecular-orbitals.png" alt="Molecular orbital view" width="48%">
+</p>
+<p align="center"><sub>Biomolecular structure view</sub> · <sub>Molecular orbital view</sub></p>
 
 ## ✨ Features
 
@@ -70,28 +84,7 @@ Quantum chemistry packages run the calculations; DeepCurve helps you inspect and
 
 ### 🌀 Wavefunction analysis
 
-Wavefunction analyses run in the background and show their results in dedicated panels and in the 3D view.
-
-| Category | Analyses |
-| --- | --- |
-| Bond orders | Mayer, Mulliken, Wiberg, Laplacian (LBO), fuzzy (FBO), IBSI, delocalization index (DI), multicenter bond order (MCBO), natural fragment bond orbitals (NFBO) |
-| Weak interactions | NCI (RDG), IGM, IGMH interaction analysis, modified IGM (mIGM), IRI |
-| Electron localization | ELF and LOL, including their basin analyses; density overlap regions indicator (DORI) |
-| Atomic charges | Hirshfeld, ADCH, CM5 / 1.2×CM5, MBIS, VDD, Becke, Mulliken, Löwdin, SCPA, Stout–Politzer, Bickelhaupt; orbital populations |
-| Periodic grid charges | Hirshfeld, Hirshfeld-I, MBIS and CM5 charges from periodic electron density grids |
-| Surface properties and charges | Electrostatic potential (ESP) and local electron attachment energy (LEAE) on molecular surfaces with surface statistics and extrema, ESP-fitted charges (CHELPG/RESP), Hirshfeld surfaces with fingerprint plots |
-| QTAIM | Critical point search and bond critical point properties; atomic basin charges, volumes and localization/delocalization indices |
-| Conceptual DFT | Condensed Fukui functions, global reactivity indices, Fukui function grids |
-| Local chemical potential | Local Regional Chemical Potential (LRCP) |
-| Aromaticity | HOMA / Bird indices with automatic ring detection; fuzzy-space PDI / FLU / PLR / ITA; magnetically induced currents and bond currents |
-| Excited states | Hole–electron analysis, natural transition orbitals (NTO), transition density matrix (TDM) heatmaps |
-| Electronic structure | DOS / PDOS / COHP, VASP DOS and band structures, electron density difference (EDD) |
-| Orbital analysis | Orbital composition, Foster–Boys / Pipek–Mezey localization, intrinsic atomic orbital (IAO) charges, intrinsic bond orbitals (IBO), Adaptive Natural Density Partitioning (AdNDP) |
-| Magnetic response | Anisotropy of the induced current density (AICD), iso-chemical shielding surfaces (ICSS) |
-| Information theory | Atomic and molecular Shannon entropy, Fisher information, Onicescu energy and Rényi entropy; information gain and other relative quantities; information-density grids |
-| Molecular cavities | Isodensity-based cavity visualization and volumes |
-
-Each analysis has its own input requirements. A file that only contains atomic coordinates is enough for structure viewing, but not for analyses that need a basis set, orbitals or electron density. If something is missing, the panel tells you which file or data is required.
+DeepCurve runs wavefunction analyses in the background and presents results in dedicated panels and the 3D view. Available methods cover bonding, weak interactions, charges, electron localization, excited states, aromaticity, magnetic response and electronic structure. Each method has its own input requirements; the panel identifies missing data.
 
 ### 🛠️ Structure editing, export and workflows
 
@@ -110,93 +103,7 @@ Each analysis has its own input requirements. A file that only contains atomic c
 
 ## 📂 Supported file formats
 
-The table lists the formats DeepCurve can open and what it reads from each; ✅ marks information that is read. Formats without a program name are general formats. Calculation outputs (`.out` / `.log` / `.abo`) are identified by the program banner. File dialogs in the app offer the formats relevant to each action.
-
-| Program | Format | Coordinates | Cell | MOs | Basis / GTF | Frames / trajectory | Optimization curve | Vibrational spectra | Electronic spectra | NMR | Grid | DOS / bands |
-| --- | --- | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
-|  | `.xyz` | ✅ |  |  |  | ✅ |  |  |  |  |  |  |
-|  | `.pdb` / `.ent` (`.gz`) | ✅ |  |  |  |  |  |  |  |  |  |  |
-|  | `.pqr` | ✅ |  |  |  |  |  |  |  |  |  |  |
-|  | `.mol` / `.sdf` | ✅ |  |  |  |  |  |  |  |  |  |  |
-|  | `.mol2` | ✅ |  |  |  |  |  |  |  |  |  |  |
-|  | `.cif` / `.mcif` | ✅ | ✅ |  |  |  |  |  |  |  |  |  |
-|  | mmCIF / BinaryCIF (`.mmcif`, `.bcif`) | ✅ |  |  |  |  |  |  |  |  |  |  |
-|  | `.molden` / `.input` | ✅ |  | ✅ | ✅ |  |  |  |  |  |  |  |
-|  | `.wfn` | ✅ |  | ✅ | ✅ |  |  |  |  |  |  |  |
-|  | `.wfx` | ✅ |  | ✅ | ✅ |  |  |  |  |  |  |  |
-|  | `.cube` / `.cub` | ✅ |  |  |  |  |  |  |  |  | ✅ |  |
-|  | OpenDX `.dx` |  |  |  |  |  |  |  |  |  | ✅ |  |
-|  | VTK `.vti` |  |  |  |  |  |  |  |  |  | ✅ |  |
-| ABACUS | `STRU` | ✅ | ✅ |  |  |  |  |  |  |  |  |  |
-| ABINIT | `.abi` | ✅ | ✅ |  |  |  |  |  |  |  |  |  |
-| ABINIT | `.abo` | ✅ | ✅ |  |  | ✅ | ✅ |  |  |  |  |  |
-| ADF | `.run` | ✅ |  |  |  |  |  |  |  |  |  |  |
-| ADF | `.out` | ✅ |  |  |  | ✅ | ✅ |  |  |  |  |  |
-| AMBER | `.prmtop` / `.parm7` + `.rst7` / `.restrt` / `.inpcrd` | ✅ |  |  |  |  |  |  |  |  |  |  |
-| AMBER | `.prmtop` / `.parm7` + `.mdcrd` | ✅ |  |  |  | ✅ |  |  |  |  |  |  |
-| CASTEP | `.cell` | ✅ | ✅ |  |  |  |  |  |  |  |  |  |
-| CASTEP | `.castep` | ✅ | ✅ |  |  | ✅ | ✅ |  |  |  |  |  |
-| CP2K | `.inp` / `.restart` | ✅ | ✅ |  |  |  |  |  |  |  |  |  |
-| CP2K | `.out` | ✅ | ✅ |  |  | ✅ | ✅ |  |  |  |  |  |
-| CREST | `.energies` | ✅ |  |  |  | ✅ |  |  |  |  |  |  |
-| CRYSTAL | `.d12` | ✅ | ✅ |  |  |  |  |  |  |  |  |  |
-| CRYSTAL | `.out` | ✅ | ✅ |  |  | ✅ | ✅ |  |  |  |  |  |
-| Dalton | `.dal` | ✅ |  |  |  |  |  |  |  |  |  |  |
-| Dalton | `.out` | ✅ |  |  |  | ✅ | ✅ | ✅ |  |  |  |  |
-| DFTB+ | `.gen` / `.hsd` | ✅ | ✅ |  |  |  |  |  |  |  |  |  |
-| DFTB+ | `.out` | ✅ | ✅ |  |  |  |  |  |  |  |  |  |
-| DMol3 | `.grd` |  |  |  |  |  |  |  |  |  | ✅ |  |
-| FHI-aims | `.out` | ✅ |  |  |  | ✅ | ✅ |  |  |  |  |  |
-| GAMESS-US | `.gms` | ✅ |  |  |  |  |  | ✅ | ✅ |  |  |  |
-| Gaussian | `.gjf` / `.com` | ✅ |  |  |  |  |  |  |  |  |  |  |
-| Gaussian | `.log` / `.out` | ✅ |  |  |  | ✅ | ✅ | ✅ | ✅ | ✅ |  |  |
-| Gaussian | `.fch` / `.fchk` | ✅ |  | ✅ | ✅ |  |  |  |  |  |  |  |
-| GROMACS | `.gro` | ✅ | ✅ |  |  |  |  |  |  |  |  |  |
-| LAMMPS | `.data` | ✅ | ✅ |  |  |  |  |  |  |  |  |  |
-| LAMMPS | `.dump` / `.lammpstrj` | ✅ | ✅ |  |  | ✅ |  |  |  |  |  |  |
-| Molcas | `.out` | ✅ |  |  |  |  |  |  |  |  |  |  |
-| Molpro | `.molpro` / `.molp` | ✅ |  |  |  |  |  |  |  |  |  |  |
-| Molpro | `.out` | ✅ |  |  |  | ✅ | ✅ | ✅ |  |  |  |  |
-| Molpro | `.xml` | ✅ |  | ✅ | ✅ |  |  |  |  |  |  |  |
-| MOPAC | `.mop` | ✅ |  |  |  |  |  |  |  |  |  |  |
-| Multiwfn | `.mwfn` | ✅ |  | ✅ | ✅ |  |  |  |  |  |  |  |
-| NBO | `.31` | ✅ |  |  |  |  |  |  |  |  |  |  |
-| NWChem | `.nw` | ✅ |  |  |  |  |  |  |  |  |  |  |
-| NWChem | `.out` / `.nwout` | ✅ |  |  |  | ✅ | ✅ | ✅ | ✅ |  |  |  |
-| OpenMX | `.out` | ✅ | ✅ |  |  | ✅ | ✅ |  |  |  |  |  |
-| ORCA | `.inp` | ✅ |  |  |  |  |  |  |  |  |  |  |
-| ORCA | `.out` | ✅ |  |  |  | ✅ | ✅ | ✅ | ✅ | ✅ |  |  |
-| ORCA | `.hess` | ✅ |  |  |  |  |  | ✅ |  |  |  |  |
-| ORCA | `.gbw` / `.uno` / `.unso` / `.uco` / `.qro` / `.loc` / `.nto` / `.mp2nat` / `.nat` | ✅ |  | ✅ | ✅ |  |  |  |  |  |  |  |
-| ORCA | `.mkl` | ✅ |  | ✅ | ✅ |  |  |  |  |  |  |  |
-| ORCA | orca_2json `.json` | ✅ |  | ✅ | ✅ |  |  |  |  |  |  |  |
-| phonopy | `.yaml` | ✅ | ✅ |  |  |  |  |  |  |  |  |  |
-| PSI4 | `.inp` | ✅ |  |  |  |  |  |  |  |  |  |  |
-| Q-Chem | `.qcin` | ✅ |  |  |  |  |  |  |  |  |  |  |
-| Q-Chem | `.out` / `.qcout` | ✅ |  |  |  | ✅ | ✅ | ✅ | ✅ |  |  |  |
-| Qbics | `.inp` | ✅ |  |  |  |  |  |  |  |  |  |  |
-| Qbics | `.out` | ✅ |  |  |  | ✅ | ✅ |  |  |  |  |  |
-| Quantum ESPRESSO | `.in` | ✅ | ✅ |  |  |  |  |  |  |  |  |  |
-| Quantum ESPRESSO | `.out` | ✅ | ✅ |  |  | ✅ | ✅ |  |  |  |  |  |
-| SIESTA | `.fdf` / `.XV` | ✅ | ✅ |  |  |  |  |  |  |  |  |  |
-| SIESTA | `.out` | ✅ | ✅ |  |  | ✅ | ✅ |  |  |  |  |  |
-| SIESTA | `.ANI` | ✅ |  |  |  | ✅ |  |  |  |  |  |  |
-| Turbomole | `control` / `coord` | ✅ |  |  |  |  |  |  |  |  |  |  |
-| Turbomole | `.out` | ✅ |  |  |  | ✅ | ✅ | ✅ | ✅ |  |  |  |
-| VASP | `POSCAR` / `CONTCAR` | ✅ | ✅ |  |  |  |  |  |  |  |  |  |
-| VASP | `OUTCAR` | ✅ | ✅ |  |  | ✅ | ✅ | ✅ |  |  |  |  |
-| VASP | `vasprun.xml` | ✅ | ✅ |  |  | ✅ | ✅ |  |  |  |  | ✅ |
-| VASP | `XDATCAR` | ✅ | ✅ |  |  | ✅ | ✅ |  |  |  |  |  |
-| VASP | `DOSCAR` / `EIGENVAL` / `PROCAR` |  |  |  |  |  |  |  |  |  |  | ✅ |
-| VASP | `CHGCAR` / `CHG` / `ELFCAR` / `LOCPOT` | ✅ | ✅ |  |  |  |  |  |  |  | ✅ |  |
-| XMVB | `.xmi` / `.xmo` | ✅ |  |  |  |  |  |  |  |  |  |  |
-| xTB | `.out` | ✅ |  |  |  | ✅ | ✅ | ✅ |  |  |  |  |
-
-- Turbomole and xTB vibrational spectra are read from the `vibspectrum` file in the same folder; VASP `OUTCAR` gives frequencies and modes without IR intensities.
-- VASP `DOSCAR` / `EIGENVAL` / `PROCAR` are read from a calculation folder through the VASP DOS and band structure dialog.
-- ORCA binary orbital files and `.mkl` open as a Molden file written beside them. Molecular orbitals of an output file come from a same-name wavefunction file (`.fch`, `.molden`, ...) in the same folder.
-- AMBER coordinate and trajectory files take element and atom information from a topology file (`.prmtop` / `.parm7`) in the same folder.
-- DeepCurve documents (`.qc`) can also be opened.
+DeepCurve reads molecular and crystal structures, calculation inputs and outputs, trajectories, orbital files and volumetric grids from a range of computational chemistry and materials programs, including ORCA, Gaussian, CP2K, Quantum ESPRESSO, ABACUS and VASP. Common formats such as XYZ, PDB, CIF and CUBE are also supported. Available data depend on the file and selected workflow; some analyses require companion files in the same calculation folder. File dialogs show the formats accepted by each action.
 
 ## 💿 Installation
 
@@ -210,14 +117,14 @@ Download the installer for your operating system from [GitHub Releases](https://
 On Debian / Ubuntu, run this command in the download folder:
 
 ```bash
-sudo apt install ./deepcurve_0.2.3_amd64.deb
+sudo apt install ./deepcurve_0.2.4_amd64.deb
 ```
 
 Then launch DeepCurve from the application menu or with the `deep-curve` command. For the AppImage, run:
 
 ```bash
-chmod +x ./deepcurve_0.2.3_amd64.AppImage
-./deepcurve_0.2.3_amd64.AppImage
+chmod +x ./deepcurve_0.2.4_amd64.AppImage
+./deepcurve_0.2.4_amd64.AppImage
 ```
 
 If a platform has no package on the Releases page, no build is available for it in that version yet.
@@ -249,20 +156,17 @@ DeepCurve does not replace computational engines such as ORCA, Gaussian or CP2K,
 ## 🆕 What's new
 
 <!-- release:notes -->
-Highlights of **v0.2.3**:
+Highlights of **v0.2.4**:
 
-- Redesigned the Agent interface, added context usage display and manual context compression, improved performance, and expanded the DeepCurve interface features the Agent can access. Tool calls are more reliable, though failures may still be frequent.
-- Updated Settings with Memory and Token Usage Statistics. Simplified API key and model configuration, provider switching, and discovery of available models.
-- Added a Literature Library to the sidebar for storing, reading and annotating papers, taking notes, and working with the Agent. Formula recognition remains limited.
-- Fixed input-file reading issues for ORCA, Quantum ESPRESSO (QE) and other programs.
-- Added the Local Regional Chemical Potential (LRCP) method to the Analysis module.
-- Fixed surface coloring loss when exporting `.glb` / `.obj` scenes for further rendering in tools such as Blender.
-- Added orbital composition analysis.
-- Added built-in specifications for selected language models so the Agent can identify their capabilities.
-- Added Crystal grid data tools for translating grids and viewing them in supercells.
-- Added ELF and LOL basin analyses.
-- Added magnetically induced current and bond current calculations to the Aromaticity module.
-- Added Adaptive Natural Density Partitioning (AdNDP) analysis.
+- Fixed `.cif` file reading and enabled Bio Mode for viewing biological structures such as DNA and proteins.
+- Added hydrogen bonds to the bond-type selector in the right-side Bonds and Angles panel.
+- Improved the Agent runtime and frontend interactions.
+- Added VASP input-file generation to the Create module, including POSCAR, INCAR and KPOINTS, with optional POTCAR assembly from a user-provided pseudopotential library.
+- Extended electron density difference (EDD) calculations to VASP density grids and electron-density CUBE files exported by CP2K, Quantum ESPRESSO (QE) and ABACUS. Both wavefunction and periodic-grid workflows support multiple references with an operation per reference, write CUBE results and can load them directly into the 3D view.
+- Improved several 2D plotting interfaces, adding right-click options for exporting data and images and changing settings, and simplifying chart layouts.
+- Added quick references for software listed under Inspirations in About.
+- Filled gaps in method references and let the Agent retrieve the sources shown under View method source when needed.
+- Added automatic movement of smaller surface fragments across periodic boundaries to join them to larger fragments in the display and reduce clipping near cell boundaries.
 
 See the in-app release notes and the [Releases page](https://github.com/ruoguli/deepcurve/releases) for the full list of changes.
 <!-- /release:notes -->
@@ -276,7 +180,7 @@ When reporting a problem, please include the DeepCurve version, your operating s
 
 ## ⚠️ Limitations
 
-Check analysis results against the original calculation settings and the scientific literature. DeepCurve cannot guarantee that every input file or analysis is appropriate for every research scenario; verify important results with dedicated programs or independent methods. Third-party components and their licenses can be viewed inside the application. If you use DeepCurve in research or publications, please cite the software and the original literature of the analysis methods you use.
+Check analysis results against the original calculation settings and the scientific literature. DeepCurve cannot guarantee that every input file or analysis is appropriate for every research scenario; verify important results with dedicated programs or independent methods. Third-party components and their licenses can be viewed inside the application. If you use DeepCurve in research or publications, please cite DeepCurve. The author also recommends citing projects such as [Multiwfn](http://sobereva.com/multiwfn/), [PySCF](https://pyscf.org/) and [Mol*](https://molstar.org/); DeepCurve's implementation draws heavily on the practices of these excellent projects.
 
 ## 📄 License
 
