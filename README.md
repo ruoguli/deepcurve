@@ -7,7 +7,7 @@
 </div>
 
 <p align="center">
-  <a href="https://github.com/ruoguli/deepcurve/releases/latest"><img src="https://img.shields.io/github/v/release/ruoguli/deepcurve?label=release&color=2b7bb9" alt="Latest release"></a>
+  <a href="https://github.com/ruoguli/deepcurve/releases"><img src="https://img.shields.io/badge/release-0.2.4-2b7bb9" alt="Release: 0.2.4"></a>
   <a href="https://github.com/ruoguli/deepcurve/releases"><img src="https://img.shields.io/github/downloads/ruoguli/deepcurve/total?color=4c9a2a" alt="Downloads"></a>
   <img src="https://img.shields.io/badge/platform-Windows%20%7C%20Linux-6e6e6e" alt="Platforms: Windows | Linux">
   <a href="LICENSE"><img src="https://img.shields.io/badge/license-DeepCurve%20License-8a5cb8" alt="License"></a>
@@ -16,6 +16,7 @@
 <p align="center">
   <img src="docs/images/deepcurve-banner.png" alt="DeepCurve — Modern computational chemistry for the AI era" width="720">
 </p>
+
 **DeepCurve** is a desktop application and computational chemistry middleware for the AI era. It connects researchers, AI Agents, scientific software and research data, bringing structure visualization, calculation analysis, input preparation and research workflows into one workspace.
 
 <!-- release:version -->
