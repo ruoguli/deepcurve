@@ -1,69 +1,65 @@
 {
   "schema": 1,
-  "generatedAt": "2026-11-08T13:53:21Z",
+  "generatedAt": "2026-11-15T00:40:48Z",
   "app": {
-    "version": "0.2.3",
-    "date": "2026-11-08",
+    "version": "0.2.4",
+    "date": "2026-11-15",
     "notes": {
       "zh": [
-        "重新设计 Agent 界面，新增上下文用量显示和主动压缩，改进运行性能，并支持与更多 DeepCurve 界面功能交互。工具调用可靠性有所改善，但仍可能频繁失败。",
-        "优化设置界面，新增“记忆”和“Token 使用统计”，简化 API Key、模型配置、供应商切换与可用模型探测流程。",
-        "侧边栏新增“文献库”，支持存放、阅读和批注论文、记录笔记，并与 Agent 交互；公式识别能力仍有限。",
-        "修复 ORCA、Quantum ESPRESSO（QE）等程序的输入文件读取问题。",
-        "分析模块新增 Local Regional Chemical Potential（LRCP）方法。",
-        "修复导出 `.glb` / `.obj` 三维场景时丢失曲面着色的问题，方便在 Blender 等软件中继续渲染。",
-        "新增轨道组成分析。",
-        "新增部分大语言模型的内置规格信息，帮助 Agent 识别模型能力。",
-        "晶体模块新增格点数据工具，支持平移格点数据和查看超胞中的格点数据。",
-        "新增 ELF 与 LOL 盆分析。",
-        "芳香性模块新增磁感生电流与键电流计算。",
-        "新增自适应自然密度划分（AdNDP）分析。"
+        "修复 `.cif` 文件读取问题，开放生物模式，方便查看 DNA、蛋白质等生物结构。",
+        "“键与角度”右侧面板的键类型选择框新增氢键选项。",
+        "优化 Agent 运行时与前端交互体验。",
+        "创建模块新增 VASP 输入文件生成，支持 POSCAR、INCAR、KPOINTS，并可从用户提供的赝势库组装 POTCAR。",
+        "扩展电子密度差（EDD）计算，支持 VASP 密度格点，以及 CP2K、Quantum ESPRESSO（QE）、ABACUS 导出的电子密度 CUBE。波函数与周期格点两种流程均支持多个参考及各参考独立的运算符，直接输出 CUBE，并可自动载入三维视图。",
+        "优化部分二维绘图界面，通过右键菜单导出数据、图片和调整设置；中英文界面均使用英文坐标标签，并简化图表布局。",
+        "“关于 → 灵感来源”新增参考实现软件的快速引用。",
+        "补齐部分方法参考来源，Agent 可按需获取“查看方法出处”中的来源信息。",
+        "新增“自动移动跨周期表面”，在显示时将跨周期的较小表面碎片拼接到较大片段旁，减少晶胞边界附近的表面截断。",
+        "修复文件识别、格点与表面显示、卡片布局和输入控件对齐等问题。"
       ],
       "en": [
-        "Redesigned the Agent interface, added context usage display and manual context compression, improved performance, and expanded the DeepCurve interface features the Agent can access. Tool calls are more reliable, though failures may still be frequent.",
-        "Updated Settings with Memory and Token Usage Statistics. Simplified API key and model configuration, provider switching, and discovery of available models.",
-        "Added a Literature Library to the sidebar for storing, reading and annotating papers, taking notes, and working with the Agent. Formula recognition remains limited.",
-        "Fixed input-file reading issues for ORCA, Quantum ESPRESSO (QE) and other programs.",
-        "Added the Local Regional Chemical Potential (LRCP) method to the Analysis module.",
-        "Fixed surface coloring loss when exporting `.glb` / `.obj` scenes for further rendering in tools such as Blender.",
-        "Added orbital composition analysis.",
-        "Added built-in specifications for selected language models so the Agent can identify their capabilities.",
-        "Added Crystal grid data tools for translating grids and viewing them in supercells.",
-        "Added ELF and LOL basin analyses.",
-        "Added magnetically induced current and bond current calculations to the Aromaticity module.",
-        "Added Adaptive Natural Density Partitioning (AdNDP) analysis."
+        "Fixed `.cif` file reading and enabled Bio Mode for viewing biological structures such as DNA and proteins.",
+        "Added hydrogen bonds to the bond-type selector in the right-side Bonds and Angles panel.",
+        "Improved the Agent runtime and frontend interactions.",
+        "Added VASP input-file generation to the Create module, including POSCAR, INCAR and KPOINTS, with optional POTCAR assembly from a user-provided pseudopotential library.",
+        "Extended electron density difference (EDD) calculations to VASP density grids and electron-density CUBE files exported by CP2K, Quantum ESPRESSO (QE) and ABACUS. Both wavefunction and periodic-grid workflows support multiple references with an operation per reference, write CUBE results and can load them directly into the 3D view.",
+        "Improved several 2D plotting interfaces, with export and settings in right-click menus, English axis labels in both interface languages, and simpler chart layouts.",
+        "Added quick references for software listed under Inspirations in About.",
+        "Filled gaps in method references and let the Agent retrieve the sources shown under View method source when needed.",
+        "Added automatic movement of smaller surface fragments across periodic boundaries to join them to larger fragments in the display and reduce clipping near cell boundaries.",
+        "Fixed issues with file recognition, grid and surface display, card layouts and input-control alignment."
       ]
     },
     "platforms": {
       "windows-x86_64": [
         {
           "kind": "nsis",
-          "name": "deepcurve_0.2.3_x64-setup.exe",
+          "name": "deepcurve_0.2.4_x64-setup.exe",
           "urls": [
-            "https://github.com/ruoguli/deepcurve/releases/download/v0.2.3/deepcurve_0.2.3_x64-setup.exe"
+            "https://github.com/ruoguli/deepcurve/releases/download/v0.2.4/deepcurve_0.2.4_x64-setup.exe"
           ],
-          "sha256": "bc8f262463fdc8d95c8b3bd53e34b1be965bdf99f175b61c9dd5a31619ee4653",
-          "size": 32564690
+          "sha256": "ae3e5d4cf1b0a82c2b1efd10c5bce119b2709fb6a88573909bb6d39c91a9ef0f",
+          "size": 35787826
         }
       ],
       "linux-x86_64": [
         {
           "kind": "deb",
-          "name": "deepcurve_0.2.3_amd64.deb",
+          "name": "deepcurve_0.2.4_amd64.deb",
           "urls": [
-            "https://github.com/ruoguli/deepcurve/releases/download/v0.2.3/deepcurve_0.2.3_amd64.deb"
+            "https://github.com/ruoguli/deepcurve/releases/download/v0.2.4/deepcurve_0.2.4_amd64.deb"
           ],
-          "sha256": "6e562e52990176c9447cd48793922f779b4bdad915c31bfce1b05b3b9ae1691e",
-          "size": 54188104
+          "sha256": "af08d71a31dc8d0fa2d50df8c71df9800e0f456a4bd0494a170e58fddd90f6ca",
+          "size": 58925626
         },
         {
           "kind": "appimage",
-          "name": "deepcurve_0.2.3_amd64.AppImage",
+          "name": "deepcurve_0.2.4_amd64.AppImage",
           "urls": [
-            "https://github.com/ruoguli/deepcurve/releases/download/v0.2.3/deepcurve_0.2.3_amd64.AppImage"
+            "https://github.com/ruoguli/deepcurve/releases/download/v0.2.4/deepcurve_0.2.4_amd64.AppImage"
           ],
-          "sha256": "617996e25f0029b99820cb14b7d219a8ed32a35207f8f079c1e17b757edb8d53",
-          "size": 191444160
+          "sha256": "16d7c5bbd766a2191d620940ae203f25778ea0014d8391d2e449453edb35402d",
+          "size": 196228288
         }
       ]
     }
